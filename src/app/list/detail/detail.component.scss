@@ -1,0 +1,27 @@
+.welcome-card img {
+    max-height: 300px;;
+    overflow: hidden;
+  }
+
+  .size {
+    font-size: 16px;
+  }
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    max-height: 300px;
+  }
+  .basic-Details{
+    color: #908282;
+    font-size: 14px;
+  }
+  ion-segment-button {
+    height: 35px;
+  }
+  .grid-table{
+    ion-col {
+      border:1px solid #908282;
+    }
+  }

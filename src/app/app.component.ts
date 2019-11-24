@@ -17,9 +17,20 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'List',
+      title: 'Explore',
       url: '/list',
-      icon: 'list'
+      icon: 'search'
+    },
+    {
+      title: 'My Profile',
+      url: '/myProfile',
+      icon: 'person'
+    },
+    {
+      title: 'Logout',
+      url: '/logout',
+      icon: 'log-out'
+      
     }
   ];
 

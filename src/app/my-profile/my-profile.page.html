@@ -1,0 +1,148 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      My Profile
+    </ion-title>
+    
+    
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen>
+  <form [formGroup]="myProfileForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+          <fa-icon [icon]="['fas','beer']" ></fa-icon>
+          <fa-icon [icon]="['far','user-circle']" ></fa-icon>
+          <fa-icon [icon]="['far','address-book']" ></fa-icon>
+          
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="firstname" id="firstName"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="lastname" id="lastName"></ion-input>
+      </ion-item>
+      <ion-item>
+          
+        <ion-label position="floating"> <ion-icon name="mail"></ion-icon> Email <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" type="email" formControlName="email" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+            
+            <fa-icon [icon]="['fas','birthday-cake']" ></fa-icon>
+          DOB <ion-text color="danger">*</ion-text></ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY HH:mm"  formControlName="dob"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Height (cms) <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="height" id="height"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Weight <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="weight" id="height"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','dollar-sign']" ></fa-icon>
+            
+          Salary <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number"  formControlName="salary" id="height"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','mobile-alt']" ></fa-icon>
+          Mobile number <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="number"  formControlName="mobileno" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Complexion <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="complexion" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+            
+          Education1 <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="education" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Occupation <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="occupation" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Paternal Gotram <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="paternalGotram" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Maternal Gotram <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="maternalGotram" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Gender <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="gender" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Rasi <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="rasi" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Star <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="star" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Caste <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="caste" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Religion <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="religion" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Marital Status <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="maritalstatus" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Family Status <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="familyStatus" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Family Type <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="familyType" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Family Values <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="familyValues" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Tags <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="tags" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">About Self <ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea required type="text"  formControlName="aboutSelf" ></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Address <ion-text color="danger">*</ion-text></ion-label>
+        <ion-textarea required type="text"  formControlName="address" ></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Latitude <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="latitude" ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Longitude <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text"  formControlName="longitude" ></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="applyUpdates()">Update</ion-button>
+    </div>
+  </form>
+</ion-content>

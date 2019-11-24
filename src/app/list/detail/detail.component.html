@@ -1,0 +1,277 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToList();"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 16px;">{{profileId}} </ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="sendShare()">
+        <ion-icon name="share" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding ">
+  <img [src]="profile.photoLink" alt="" fullscreen class="center" />
+  <ion-grid class="basic-Details">
+    <ion-row>
+      <ion-col style="text-align: center; font-size: 18px;">
+        Mahesh Bonagiri
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-segment (ionChange)="segmentChanged($event)">
+      <ion-segment-button checked value="info">
+        <ion-label>Basic Info</ion-label>
+        </ion-segment-button>
+      <ion-segment-button value="astrology">
+        <ion-label>Astrology</ion-label>
+        </ion-segment-button>
+      <ion-segment-button value="stats">
+        <ion-label>Stats</ion-label>
+        </ion-segment-button>
+      </ion-segment>
+
+
+  <div [ngSwitch]="selected">
+    <div *ngSwitchCase="'astrology'">
+    
+    <ion-grid class="basic-Details grid-table">
+      <ion-row>
+        <ion-col size="3">
+          Guna
+        </ion-col>
+        <ion-col size="3">
+          Groom
+        </ion-col>
+        <ion-col size="3">
+          Bride
+        </ion-col>
+        <ion-col size="3">
+          Points
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Varna
+        </ion-col>
+        <ion-col size="3">
+          Kshatriya
+        </ion-col>
+        <ion-col size="3">
+          Kshatriya
+        </ion-col>
+        <ion-col size="3">
+          1/1
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Vashya
+        </ion-col>
+        <ion-col size="3">
+          Chatushpada
+        </ion-col>
+        <ion-col size="3">
+          Chatushpada
+        </ion-col>
+        <ion-col size="3">
+          2/2
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Star
+        </ion-col>
+        <ion-col size="3">
+          Aswini
+        </ion-col>
+        <ion-col size="3">
+          Aswini
+        </ion-col>
+        <ion-col size="3">
+          3/3
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Yoni
+        </ion-col>
+        <ion-col size="3">
+          gurram
+        </ion-col>
+        <ion-col size="3">
+          gurram
+        </ion-col>
+        <ion-col size="3">
+          4/4
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Graha Maitri
+        </ion-col>
+        <ion-col size="3">
+          kuja
+        </ion-col>
+        <ion-col size="3">
+          kuja
+        </ion-col>
+        <ion-col size="3">
+          5/5
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Gana
+        </ion-col>
+        <ion-col size="3">
+          Deva
+        </ion-col>
+        <ion-col size="3">
+          Deva
+        </ion-col>
+        <ion-col size="3">
+          6/6
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Rashi
+        </ion-col>
+        <ion-col size="3">
+          Aries
+        </ion-col>
+        <ion-col size="3">
+          Aries
+        </ion-col>
+        <ion-col size="3">
+          7/7
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          Nadi
+        </ion-col>
+        <ion-col size="3">
+          Aadi
+        </ion-col>
+        <ion-col size="3">
+          Aadi
+        </ion-col>
+        <ion-col size="3">
+          0/8
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="3">
+          
+        </ion-col>
+        <ion-col size="3">
+          
+        </ion-col>
+        <ion-col size="3">
+          Total Count
+        </ion-col>
+        <ion-col size="3">
+          28/36
+        </ion-col>
+      </ion-row>
+      </ion-grid>
+   	 	
+			
+	
+
+    </div>
+    <div *ngSwitchCase="'stats'">
+      statss
+
+    </div>
+    <div *ngSwitchDefault style="background: #fbf8f8;font-family: Verdana, Geneva, Tahoma, sans-serif;">
+
+
+      <ion-grid class="basic-Details">
+
+        <ion-row>
+          <ion-col>
+            27 yrs, 5' 5'
+          </ion-col>
+          <ion-col>
+            Bachelors, Software Engineer
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Rohini/ Aries
+          </ion-col>
+          <ion-col>
+            Fair -White
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Mithunakula, Mithunakula
+          </ion-col>
+          <ion-col>
+            Joint, Middleclass, Orthodox
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            Hindu, Vysya
+          </ion-col>
+          <ion-col>
+            10,00,00,000
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            69 kgs, 18.5 BMI
+          </ion-col>
+          <ion-col>
+            Never Married
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="border-top: 1px solid #c1c4cd; margin-top:10px">
+          <ion-col>
+            Now that your app has been created, you'll want to start building out features and components. Check out
+            some of
+            the resources below for next steps.
+
+
+
+
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+      <ion-chip style="pointer-events: none;">
+        <ion-label> Default</ion-label>
+      </ion-chip>
+
+    </div>
+
+  </div>
+
+
+
+
+
+</ion-content>

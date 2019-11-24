@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+import { DashboardDetailComponent } from './dashboard-detail/dashboard-detail.component';
 
 @NgModule({
   imports: [
@@ -15,9 +16,13 @@ import { HomePage } from './home.page';
       {
         path: '',
         component: HomePage
-      }
+      },
+      {
+        path: 'details/:id',
+        component: DashboardDetailComponent
+      },
     ])
   ],
-  declarations: [HomePage]
+  declarations: [HomePage,DashboardDetailComponent]
 })
 export class HomePageModule {}

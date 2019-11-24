@@ -1,0 +1,24 @@
+
+<ion-grid>
+	<ion-row class="ion-justify-content-center">
+		<ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+			<div class="ion-text-center">
+				<h4>Login </h4>
+			</div>
+			<div class="ion-padding">
+				<ion-item>
+					<ion-input type="text" placeholder="Username"></ion-input>
+				</ion-item>
+
+				<ion-item>
+					<ion-input type="password" placeholder="Password"></ion-input>
+				</ion-item>
+			</div>
+
+			<div class="ion-padding">
+				<ion-button size="large" (click)="login();" expand="block" [routerLink]="['/home']">Login</ion-button>
+      </div>
+      
+		</ion-col>
+	</ion-row>
+</ion-grid>

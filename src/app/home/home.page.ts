@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { NavController } from '@ionic/angular';
+import { NavigationExtras } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -7,6 +9,10 @@ import { Component } from '@angular/core';
 })
 export class HomePage {
 
-  constructor() {}
+  constructor(public navCtrl: NavController) { }
 
+  showDetails(type:any) {
+    this.navCtrl.navigateForward(`/home/details/${type}`);
+  }
+  
 }

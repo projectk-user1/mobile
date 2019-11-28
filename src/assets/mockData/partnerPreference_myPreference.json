@@ -1,0 +1,23 @@
+{
+    "id": 0,
+    "clientId": null,
+    "userId": null,
+    "gender": "F",
+    "maritalstatus": 1,
+    "caste": [
+      1
+    ],
+    "ageFrom": null,
+    "ageTo": null,
+    "heightFrom": 0,
+    "heightTo": 0,
+    "complexion": null,
+    "education": [
+      1
+    ],
+    "occupation": [
+      3
+    ],
+    "star": null,
+    "rasi": null
+  }

@@ -1,0 +1,14 @@
+{
+    "id": 2,
+    "clientId": "8P2",
+    "clientName": "Maheshwari 70mm",
+    "mobileNo": "77777777",
+    "email": "mahesh.bonagiri@adp.com",
+    "address": "Flat No 205, D Block, Hitech Avenue Madhapur, Hyderabad India 503001",
+    "latitude": 17.6160155,
+    "longitude": 77.9447471,
+    "clntLogo": "http://localhost:8080/ProjectK/images/camel.jpg",
+    "branding": "",
+    "vcardQr": "iVBORw0KGgoAAAANSUhEUgAAADkAAAA5AQAAAACkY74oAAABs0lEQVR42mP4DwENDHgYHyR8Hk/bwt7A8P3yS8WXrN8bGL7EMNr4PRUHMgJ1kt/kghjR1Q3stkDG92uNdw7eBar5IBoaGhoC1PX/d+Rdxvcgc1wUG3uS1jcw/LG4e6/rLX8Dw7+4LyY/Jj8H6lq0Zrv0BKCuP+57XdeFLQcaaGK9/dpLcyCD/1HLVlZ1oPYSx/e2z4DaP53dwP7Krb2B4e/+2PbZlfcbGH5E/GHY0QIU+WcbtaDqI1D7b15T9x+F1xsYPmZl7ZfLBDI+MfA03kgAuudH6cwY4e/pDQy/ghREZ5Wyg0yOvTP/u3wDw2cmHYdiBqDIT4uUvYYHgO75d/tt9DxPIOPvq18N3XrbgSbztH9LfHEc6LDvFxoE1YH++imnIN6lOh2o+NndbcfLgIp/TJVJ/hkJ8vuTM+uCZwI9+Pscb3yX9/4Ghq8/q9q5UoDu+T2tOukppztQ8XMbmcD2cqBTbyxhPJ8ADJb/36Ln9pfbAx0mViNyxhWo5vvdDXPLj9cDLQ3NdTwTAAqWgD17Z5mcBzLClz3/8wvojO8X2p3MK4Au/CC+QLMrdzneOIUxALNBF1y+s+imAAAAAElFTkSuQmCC",
+    "geoQr": "iVBORw0KGgoAAAANSUhEUgAAAGQAAABkAQAAAABYmaj5AAAA6ElEQVR42u3UO3LEIAwGYNGsr4Cb+GqmwVdYN8ZuwhVQY65mmqVNiZolTpNlMr8nF1h1X6PnjKg28UVvXanQh+O8KiSpYTQSBWrbu7yFHivYW3+lGOZ8ocrxcK96rQr1zPzqs9UZwtLM16ioVY/aTlDT4SQzI8mqTY7JI9X07LKIID271S7a9lBD6cPECYpoobk4qO5cRZUK5XY9jnZAknWO/NAGqmiT4j5A5eTTYQSq8ueNVET6yXOfi0I6LxZ94ogkNbL/3eAfbVyGQgorLHey5kJmy+yhaph8ShmpkFYPFwak99f4V9/ZvE9T1E8kbQAAAABJRU5ErkJggg=="
+}

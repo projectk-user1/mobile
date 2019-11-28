@@ -1,0 +1,6 @@
+ <ion-list *ngFor="let msgtmplt of userPrefs.MSGTMPLT">
+    <ion-item button (click)="applyComment(msgtmplt.fieldValue);">{{msgtmplt.fieldName}}</ion-item>
+</ion-list>
+
+
+<ion-button expand="block" (click)="close()">Close</ion-button>

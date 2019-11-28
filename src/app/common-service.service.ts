@@ -8,8 +8,11 @@ export class CommonService {
 
   constructor() { }
   filterValueChanged: Subject<any> = new Subject<any>();
-
+  commentApplied: Subject<any> = new Subject<any>();
   setFilter(obj:any){
     this.filterValueChanged.next(obj);
+  }
+  saveSelectedComment(obj:any){
+    this.commentApplied.next(obj);
   }
 }

@@ -91,13 +91,30 @@
       </ion-col>
     </ion-row>
   </ion-grid> -->
-  <ion-card>
+  <div *ngFor="let card of eventCards" >
+      <ion-card>
+          <ion-card-content>
+            <ion-list lines="none">
+              <ion-item detail="true" button (click)="showDetails(card?.id);">
+                <ion-icon [name]="card?.icon" slot="start" color="primary" class="bigIcon" ></ion-icon>
+                <ion-label>
+                    <h2 style="text-align: center;"> Sent / Received </h2>
+                  <h1 style="text-align: center;"> {{card.body}} </h1>
+                </ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      
+    </div>
+  
+  <!-- <ion-card>
     <ion-card-content>
       <ion-list lines="none">
         <ion-item detail="true" button (click)="showDetails(1);">
-          <ion-icon name="thumbs-up" slot="start" color="primary" class="bigIcon" ></ion-icon>
+          <ion-icon name="thumbs-up" slot="start" color="primary" class="bigIcon"></ion-icon>
           <ion-label>
-              <h2 style="text-align: center;"> Sent / Received </h2>
+            <h2 style="text-align: center;"> Sent / Received </h2>
             <h1 style="text-align: center;"> 12 / 10 </h1>
           </ion-label>
         </ion-item>
@@ -130,7 +147,7 @@
       </ion-list>
     </ion-card-content>
 
-  </ion-card>
+  </ion-card> -->
 
   <!-- <ion-card class="welcome-card">
     <img src="/assets/shapes.svg" alt="" />
@@ -164,7 +181,23 @@
       <ion-label>Theme Your App</ion-label>
     </ion-item>
   </ion-list> -->
-  <ion-list lines="none">
+  <ion-list-header >
+      <ion-label>Time Line</ion-label>
+    </ion-list-header>
+  <div *ngFor="let event of userEvents">
+      <ion-item >
+          <ion-icon slot="start" color="medium" [name]="event?.icon"></ion-icon>
+          <ion-avatar slot="start">
+              <img *ngIf="event.toUserId.photoLink" [src]="event.toUserId.photoLink" >
+          </ion-avatar>
+          <ion-label class="timeline-label">
+              <p>{{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}</p>
+              <p>{{event?.recCrtTs}} </p>
+              <p *ngIf="event?.message">{{event.message}}</p>
+            </ion-label>
+        </ion-item>
+  </div>
+  <!-- <ion-list lines="none">
     <ion-list-header >
       <ion-label>Time Line</ion-label>
     </ion-list-header>
@@ -199,5 +232,5 @@
         </ion-label>
     </ion-item>
     
-  </ion-list>
+  </ion-list> -->
 </ion-content>

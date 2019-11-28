@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, PopoverController } from '@ionic/angular';
 import { DetailComponent } from './detail/detail.component';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common-service.service';
+import { MasterFieldsService } from '../services/master-fields/master-fields.service';
+import { RestService } from '../services/rest.service';
+import { IUserPrefs } from '../_models/user';
+import { AppConstants } from '../constants/config.constants';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { UserSession } from '../_models/UserSession';
+import { CommentComponent } from './comment/comment.component';
 
 @Component({
   selector: 'app-list',
@@ -10,68 +17,78 @@ import { CommonService } from '../common-service.service';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-
-  private images =[ 
-    'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ',
-    'https://lh5.googleusercontent.com/2kP5Bms20JOCLLIpA-4ym0B7Ln6ElWVrAlw5reppcCNcv9FJuyhr-I6V0xI',
-    'https://lh4.googleusercontent.com/mO03ov7EvVC-U6C99KzdQy8HCrVOEDdRHuzlB4XFvld769-OwwvLqJW9R6Q',
-    'https://lh5.googleusercontent.com/WAFlWOoKXXNCT2-BguvTp38br0ihxZX3t7Y4Kv7iB1cGHmp8kTVBb2NykFA',
-    'https://lh3.googleusercontent.com/8vGmplduFWzJuSij00VnYQHzezRtXEoioQCbr1ZAmlw4FJqnN3KwZQQNbgA',
-    'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ',
-    'https://lh5.googleusercontent.com/2kP5Bms20JOCLLIpA-4ym0B7Ln6ElWVrAlw5reppcCNcv9FJuyhr-I6V0xI',
-    'https://lh4.googleusercontent.com/mO03ov7EvVC-U6C99KzdQy8HCrVOEDdRHuzlB4XFvld769-OwwvLqJW9R6Q',
-    'https://lh5.googleusercontent.com/WAFlWOoKXXNCT2-BguvTp38br0ihxZX3t7Y4Kv7iB1cGHmp8kTVBb2NykFA',
-    'https://lh3.googleusercontent.com/8vGmplduFWzJuSij00VnYQHzezRtXEoioQCbr1ZAmlw4FJqnN3KwZQQNbgA'
-  ]
-  public items: Array<{ profileId:string,firstName:string,
-    age:string,height:string,maritalStatus:string,
-    occupation:string,education:string,
-    distance:string,gunacount:string,salary:string, title: string; note: string; icon: string }> = [];
-  constructor(public navCtrl: NavController,private router: Router,private route: ActivatedRoute,private commonService:CommonService) {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        profileId: '8P2' + i,
-        firstName:'Mahesh',
-        age:Math.floor(Math.random() * this.images.length)+'',
-        height:'5 ft 3 in',
-        maritalStatus:'unmarried',
-        occupation:'Software Engineer',
-        education:'B. Tech',
-        distance:'180 km',
-        gunacount:'24',
-        salary:'100000',
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.images[Math.floor(Math.random() * this.images.length)]
-      });
-    }
+  
+  searchResults: any;
+  searchResultsCnt: any;
+  scrollDistance = 1;
+  scrollUpDistance = 2;
+  throttle = 1000;
+  postObj: any;
+  resultsFrom = 0;
+  resultsSize = 10;
+  userPrefs: IUserPrefs = {
+    CASTE: [],
+    COMPLEXION: [],
+    EDUCATION: [],
+    FAMILY_STATUS: [],
+    FAMILY_TYPE: [],
+    FAMILY_VALUES: [],
+    GOTRAM: [],
+    OCCUPATION: [],
+    RASI: [],
+    RELIGION: [],
+    STAR: [],
+    MARITAL_STATUS: [],
+    TAG: [],
+    MSGTMPLT:[]
+  };
+    
+  constructor(public navCtrl: NavController,
+              private route: ActivatedRoute,
+              private commonService:CommonService,
+              private _restService: RestService, 
+              private masterFieldsService: MasterFieldsService,
+              private socialSharing: SocialSharing,
+              public popoverController: PopoverController) {
+    
   }
   ngOnInit() {
-    console.log(this.route.snapshot.paramMap.get('id'));
+    // console.log(this.route.snapshot.paramMap.get('id'));
+    if (this.masterFieldsService.userPrefs) {
+      this.userPrefs = this.masterFieldsService.userPrefs;
+      this.masterFieldsService.createMstrFieldMap(this.userPrefs);
+    } else {
+      this._restService.httpGetServiceCall(AppConstants.mstrFieldsEndPoint).subscribe((res: any) => {
+        this.userPrefs = res;
+        this.masterFieldsService.createMstrFieldMap(res);
+        this.masterFieldsService.userPrefs = res;
+      }, error => {
+
+      });
+    }
+    this.postObj = {};
     this.commonService.filterValueChanged.subscribe(res =>{
       console.log(res);
+      this.postObj=res;
+      this.search();
     },
     errror => {
       console.warn("something went wrong", errror);
     })
+    this.commonService.commentApplied.subscribe(res =>{
+      console.log(res);
+      
+      this.updateCommentEvent(res);
+    },
+    errror => {
+      console.warn("something went wrong", errror);
+    })
+    this.search();
   }
 
   
   showProfile(item:any){
-    this.navCtrl.navigateForward(`/list/details/${item.profileId}`);
+    this.navCtrl.navigateForward(`/list/details/${item.userId}`);
   }
 
   navigateTofilter(){
@@ -97,4 +114,153 @@ export class ListPage implements OnInit {
   //   // this.router.navigate(['/list/detail', item]);
   //   this.navCtrl.navigateForward(`/list/details/${item.profileId}`);
   // }
+  search() {
+    this.searchResults = [];
+    this.postObj.pageSize = this.resultsSize;
+    this.resultsFrom = 0;
+    this.postObj.from = 0;
+    this._restService.httpPostCall(AppConstants.fetchProfilesCntEndPoint, this.postObj).subscribe((result) => {
+      this.searchResultsCnt = result;
+    })
+    this.loadData();
+  }
+
+  loadData() {
+    this.postObj.pageSize = this.resultsSize;
+    this.postObj.from = this.resultsFrom;
+    let url = 'user/fetchProfiles';
+    this._restService.httpPostCall(url, this.postObj).subscribe((result: any) => {
+      this.resultsFrom = this.resultsFrom + this.resultsSize;
+      result.forEach((obj) => {
+        this.parseSearchResults(obj);
+      })
+      this.searchResults = this.searchResults.concat(result);
+    })
+  }
+
+  parseSearchResults(obj) {
+    return this.masterFieldsService.parseSearchResults(obj);
+  }
+
+  onScrollDown(event) {
+    setTimeout(() => {
+      console.log('Done');
+      event.target.complete();
+      // App logic to determine if all data is loaded
+      // and disable the infinite scroll
+      if (this.resultsFrom < this.searchResultsCnt) {
+        this.loadData();
+      }else{
+        event.target.disabled = true;
+      }
+    }, 500);
+  }
+  sendShare(user:any) {
+    this.socialSharing.share(user.userId, user.userId, null, user.photoLink);
+  } 
+
+  formatCurrency(number){
+    return number.toLocaleString('en-IN', {
+       maximumFractionDigits: 2,
+       style: 'currency',
+       currency: 'INR'
+   });
+   }
+
+   updateFavouriteEvent(userInfo: any) {
+    console.log('on Update Event' + userInfo);
+    let eventModeUrl = "/create";
+    this.postObj = {};
+    userInfo.eventLogs.forEach(element => {
+      if (element.eventType == 3) {
+        this.postObj.id = element.id;
+        eventModeUrl = "/deleteEventLog"
+      }
+    });
+    this.postObj.clntId = userInfo.clientId;
+    this.postObj.toUserId = userInfo.userId;
+    this.postObj.fromUserId = UserSession.getUserSession().userInfo.userId
+    this.postObj.eventType = 3;
+    this._restService.httpPostCall('/events' + eventModeUrl, this.postObj).subscribe((result) => {
+      if (eventModeUrl == "/deleteEventLog") {
+        userInfo.favorite = "medium";
+        userInfo.eventLogs.forEach(element => {
+          if (element.eventType == 3) {
+            const index: number = userInfo.eventLogs.indexOf(element);
+            if (index !== -1) {
+              userInfo.eventLogs.splice(index, 1);
+            }
+          }
+        });
+      } else {
+        userInfo.favorite = "primary";
+        let eventLog: any = {};
+        eventLog.id = result;
+        eventLog.clntId = userInfo.clientId;
+        eventLog.eventType = 3;
+        userInfo.eventLogs.push(eventLog);
+      }
+    })
+  }
+  updateLikeEvent(userInfo: any) {
+    console.log('on Update Event' + userInfo);
+    let eventModeUrl = "/create";
+    this.postObj = {};
+    userInfo.eventLogs.forEach(element => {
+      if (element.eventType == 1) {
+        this.postObj.id = element.id;
+        eventModeUrl = "/deleteEventLog"
+      }
+    });
+    this.postObj.clntId = userInfo.clientId;
+    this.postObj.toUserId = userInfo.userId;
+    this.postObj.fromUserId = UserSession.getUserSession().userInfo.userId
+    this.postObj.eventType = 1;
+    console.log(userInfo.eventLogs);
+    this._restService.httpPostCall('/events' + eventModeUrl, this.postObj).subscribe((result) => {
+      if (eventModeUrl == "/deleteEventLog") {
+        userInfo.likeColor = "medium";
+        userInfo.eventLogs=userInfo.eventLogs.filter(item => item.eventType !=1);
+      } else {
+        userInfo.likeColor = "primary";
+        let eventLog: any = {};
+        eventLog.id = result;
+        eventLog.clntId = userInfo.clientId;
+        eventLog.eventType = 1;
+        userInfo.eventLogs.push(eventLog);
+      }
+    })
+  }
+  selectedUser:any;
+  async openMessageBox(ev: any) {
+    console.log(ev);
+    this.selectedUser=ev;
+    const popover = await this.popoverController.create({
+        component: CommentComponent,
+        event: ev,
+        animated: true,
+        showBackdrop: true,
+        cssClass: 'pop-over-style'
+    });
+    return await popover.present();
+}
+
+updateCommentEvent(selctedMsgTmplt:any){
+  console.log('on Update Event' + this.selectedUser);
+  let eventModeUrl = "/create";
+  this.postObj = {};
+  this.postObj.clntId = this.selectedUser.clientId;
+  this.postObj.toUserId = this.selectedUser.userId;
+  this.postObj.fromUserId = UserSession.getUserSession().userInfo.userId
+  this.postObj.eventType = 2;
+  this.postObj.message=selctedMsgTmplt;
+  console.log(this.selectedUser.eventLogs);
+  this._restService.httpPostCall('/events' + eventModeUrl, this.postObj).subscribe((result) => {
+    console.log(result);
+  })
+  
+}
+async dismissPopover() {
+  await this.popoverController.dismiss();
+}
 }

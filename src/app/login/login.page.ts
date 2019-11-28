@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { HomePage } from '../home/home.page';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { RestService } from '../services/rest.service';
+import { Errors } from '../constants/errors';
+import { UserSession } from '../_models/UserSession';
+import { AppConstants } from '../constants/config.constants';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +13,52 @@ import { HomePage } from '../home/home.page';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public navCtrl: NavController) { }
+  signInForm: FormGroup;
+  errorType = null;
+  loading = false;
+  constructor(public navCtrl: NavController, private _formBuilder: FormBuilder, private _restService: RestService) { }
 
   ngOnInit() {
+    this.signInForm = this._formBuilder.group({
+      loginId: ['', Validators.required],
+      password: ['', Validators.required],
+      host:[''],
+      useMock:['']
+    });
   }
 
-  public login(){
-    this.navCtrl.navigateForward('/home');
-}
+  public login() {
+    localStorage.removeItem('host');
+    localStorage.removeItem('useMock');
+    if(this.signInForm.get('host').value){
+      localStorage.setItem('host', this.signInForm.get('host').value);
+    }
+    if(this.signInForm.get('useMock').value){
+      localStorage.setItem('useMock', this.signInForm.get('useMock').value);
+    }
+    
+    if (this.signInForm.valid) {
+      this.loading = true;
+      this._restService.httpPostCall(AppConstants.loginEndPoint, this.signInForm.value).subscribe(
+        (data: any) => {
+          this.loading = false;
+          if (data) {
+            
+            UserSession.createUserSession(data.data);
+            if (UserSession.getUserSession().userInfo.userRole === 'U') {
+              localStorage.setItem('jwt', data.data);
+              this.navCtrl.navigateForward('/home');
+            }
+          } else {
+            this.errorType = Errors.AUTHENTICATION_ERROR;
+          }
+        },
+        error => {
+          this.loading = false;
+          this.errorType = Errors.SERVER_ERROR;
+        }
+      );
+    }
+  }
 
 }

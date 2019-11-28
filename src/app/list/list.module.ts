@@ -7,12 +7,15 @@ import { RouterModule } from '@angular/router';
 import { ListPage } from './list.page';
 import { DetailComponent } from './detail/detail.component';
 import { FilterComponent } from './filter/filter.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    FontAwesomeModule,
     RouterModule.forChild([
       {
         path: '',
@@ -28,9 +31,9 @@ import { FilterComponent } from './filter/filter.component';
       }
     ])
   ],
-  declarations: [ListPage, DetailComponent, FilterComponent],
+  declarations: [ListPage, DetailComponent, FilterComponent,CommentComponent],
   entryComponents: [
-    ListPage, DetailComponent, FilterComponent
+    ListPage, DetailComponent, FilterComponent,CommentComponent
   ],
 })
 export class ListPageModule { }

@@ -17,19 +17,25 @@
       <ion-item>
           <fa-icon [icon]="['fas','beer']" ></fa-icon>
           <fa-icon [icon]="['far','user-circle']" ></fa-icon>
-          <fa-icon [icon]="['far','address-book']" ></fa-icon>
-          
-      </ion-item>
-      <ion-item>
-        <ion-label position="floating">First Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','user']" ></fa-icon>
+          First Name <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text"  formControlName="firstname" id="firstName"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Last Name <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','user']" ></fa-icon>
+          Last Name <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text"  formControlName="lastname" id="lastName"></ion-input>
       </ion-item>
       <ion-item>
-          
+          <ion-label position="floating">Gender <ion-text color="danger">*</ion-text></ion-label>
+          <ion-select placeholder="Select One" formControlName="gender">
+              <ion-select-option *ngFor="let gender of [{name: 'Male', key: 'M'}, {name: 'Female', key: 'F'}]"
+              [value]="gender.key">{{gender.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+      <ion-item> 
         <ion-label position="floating"> <ion-icon name="mail"></ion-icon> Email <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text" type="email" formControlName="email" ></ion-input>
       </ion-item>
@@ -41,11 +47,15 @@
         <ion-datetime displayFormat="DD/MM/YYYY HH:mm"  formControlName="dob"></ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Height (cms) <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','ruler-vertical']" ></fa-icon>
+          Height (cms) <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text"  formControlName="height" id="height"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Weight <ion-text color="danger">*</ion-text></ion-label>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','weight']" ></fa-icon>
+          Weight <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text"  formControlName="weight" id="height"></ion-input>
       </ion-item>
       <ion-item>
@@ -63,65 +73,106 @@
       </ion-item>
       <ion-item>
         <ion-label position="floating">Complexion <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="complexion" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="complexion">
+            <ion-select-option *ngFor="let complexion of userPrefs.COMPLEXION"
+            [value]="complexion.fieldValue">{{complexion.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">
-            
-          Education1 <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="education" ></ion-input>
+            <fa-icon [icon]="['fas','graduation-cap']" ></fa-icon>
+          Education <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="Select One" formControlName="education" >
+            <ion-select-option *ngFor="let education of userPrefs.EDUCATION"
+            [value]="education.fieldValue">{{education.fieldName}}</ion-select-option>
+          </ion-select>
       </ion-item>
       <ion-item>
-        <ion-label position="floating">Occupation <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="occupation" ></ion-input>
+        <ion-label position="floating">
+            <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
+          Occupation <ion-text color="danger">*</ion-text></ion-label>
+        <ion-select placeholder="Select One" formControlName="occupation">
+            <ion-select-option *ngFor="let occupation of userPrefs.OCCUPATION"
+            [value]="occupation.fieldValue">{{occupation.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Paternal Gotram <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="paternalGotram" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="paternalGotram">
+            <ion-select-option *ngFor="let paternalGotram of userPrefs.GOTRAM"
+            [value]="paternalGotram.fieldValue">{{paternalGotram.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Maternal Gotram <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="maternalGotram" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="maternalGotram">
+            <ion-select-option *ngFor="let maternalGotram of userPrefs.GOTRAM"
+            [value]="maternalGotram.fieldValue">{{maternalGotram.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
-      <ion-item>
-        <ion-label position="floating">Gender <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="gender" ></ion-input>
-      </ion-item>
+      
       <ion-item>
         <ion-label position="floating">Rasi <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="rasi" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="rasi">
+            <ion-select-option *ngFor="let rasi of userPrefs.RASI"
+            [value]="rasi.fieldValue">{{rasi.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Star <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="star" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="star">
+            <ion-select-option *ngFor="let star of userPrefs.STAR"
+            [value]="star.fieldValue">{{star.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Caste <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="caste" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="caste">
+            <ion-select-option *ngFor="let caste of userPrefs.CASTE"
+            [value]="caste.fieldValue">{{caste.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Religion <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="religion" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="religion">
+            <ion-select-option *ngFor="let religion of userPrefs.RELIGION"
+            [value]="religion.fieldValue">{{religion.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Marital Status <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="maritalstatus" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="maritalstatus">
+            <ion-select-option *ngFor="let maritalstatus of userPrefs.MARITAL_STATUS"
+            [value]="maritalstatus.fieldValue">{{maritalstatus.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Family Status <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="familyStatus" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="familyStatus">
+            <ion-select-option *ngFor="let familyStatus of userPrefs.FAMILY_STATUS"
+            [value]="familyStatus.fieldValue">{{familyStatus.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Family Type <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="familyType" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="familyType">
+            <ion-select-option *ngFor="let familyType of userPrefs.FAMILY_TYPE"
+            [value]="familyType.fieldValue">{{familyType.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Family Values <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="familyValues" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="familyValues">
+            <ion-select-option *ngFor="let familyValues of userPrefs.FAMILY_VALUES"
+            [value]="familyValues.fieldValue">{{familyValues.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Tags <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text"  formControlName="tags" ></ion-input>
+        <ion-select placeholder="Select One" formControlName="tags" multiple="true">
+            <ion-select-option *ngFor="let tags of userPrefs.TAG"
+            [value]="tags.fieldValue">{{tags.fieldName}}</ion-select-option>
+        </ion-select>
       </ion-item>
       <ion-item>
         <ion-label position="floating">About Self <ion-text color="danger">*</ion-text></ion-label>

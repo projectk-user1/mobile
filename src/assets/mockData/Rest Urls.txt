@@ -1,0 +1,721 @@
+LOGIN:
+http://localhost:8080/ProjectK/rest/login/validate
+{"loginId":"mahesh@8P2","password":"mani1008"}
+{
+    "statusCode": 200,
+    "message": "Login Success",
+    "data": "eyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJUZXN0IEZpcnN0IE5hbWUgOTciLCJsYXN0TmFtZSI6IlRlc3QgTGFzdCBOYW1lIDk3IiwiY2xpZW50SWQiOiI4UDIiLCJwaG90b1BhdGgiOm51bGwsInBlcm1pc3Npb25zIjpbIk1ZUFJPRklMRSIsIkRBU0hCT0FSRCIsIlNFQVJDSCJdLCJ1c2VyUm9sZSI6bnVsbCwiZXhwIjoxNTM1NTcyNjg3LCJ1c2VySWQiOiJtYWhlc2hAOFAyIiwidXNlcktleSI6bnVsbH0.GewOwk4L23HyNcdxNQTQsAj73vugtCM4Ey4ilMVjiYU"
+}
+
+http://localhost:8080/ProjectK/rest/mstrFields/getAll
+{
+    "RASI": [
+        {
+            "fieldName": "Aries",
+            "fieldType": "RASI",
+            "fieldValue": "1",
+            "id": 1,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Taurus",
+            "fieldType": "RASI",
+            "fieldValue": "2",
+            "id": 2,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Gemini",
+            "fieldType": "RASI",
+            "fieldValue": "3",
+            "id": 3,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Cancer",
+            "fieldType": "RASI",
+            "fieldValue": "4",
+            "id": 4,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Leo",
+            "fieldType": "RASI",
+            "fieldValue": "5",
+            "id": 5,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Virgo",
+            "fieldType": "RASI",
+            "fieldValue": "6",
+            "id": 6,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Libra",
+            "fieldType": "RASI",
+            "fieldValue": "7",
+            "id": 7,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Scorpio",
+            "fieldType": "RASI",
+            "fieldValue": "8",
+            "id": 8,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Sagittarius",
+            "fieldType": "RASI",
+            "fieldValue": "9",
+            "id": 9,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Capricorn",
+            "fieldType": "RASI",
+            "fieldValue": "10",
+            "id": 10,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Aquarius",
+            "fieldType": "RASI",
+            "fieldValue": "11",
+            "id": 11,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Pisces",
+            "fieldType": "RASI",
+            "fieldValue": "12",
+            "id": 12,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "STAR": [
+        {
+            "fieldName": "Aswini",
+            "fieldType": "STAR",
+            "fieldValue": "1",
+            "id": 13,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Bharani",
+            "fieldType": "STAR",
+            "fieldValue": "2",
+            "id": 14,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Kruthiga",
+            "fieldType": "STAR",
+            "fieldValue": "3",
+            "id": 15,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Rohini",
+            "fieldType": "STAR",
+            "fieldValue": "4",
+            "id": 16,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Mrigasira",
+            "fieldType": "STAR",
+            "fieldValue": "5",
+            "id": 17,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Arudra",
+            "fieldType": "STAR",
+            "fieldValue": "6",
+            "id": 18,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Punarvasu",
+            "fieldType": "STAR",
+            "fieldValue": "7",
+            "id": 19,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Pushya",
+            "fieldType": "STAR",
+            "fieldValue": "8",
+            "id": 20,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Asilesha",
+            "fieldType": "STAR",
+            "fieldValue": "9",
+            "id": 21,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Makha",
+            "fieldType": "STAR",
+            "fieldValue": "10",
+            "id": 22,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Poorvaphalguni",
+            "fieldType": "STAR",
+            "fieldValue": "11",
+            "id": 23,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Uthiraphalgunu",
+            "fieldType": "STAR",
+            "fieldValue": "12",
+            "id": 24,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Hastha",
+            "fieldType": "STAR",
+            "fieldValue": "13",
+            "id": 25,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Chitha",
+            "fieldType": "STAR",
+            "fieldValue": "14",
+            "id": 26,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Swathi",
+            "fieldType": "STAR",
+            "fieldValue": "15",
+            "id": 27,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Visaka",
+            "fieldType": "STAR",
+            "fieldValue": "16",
+            "id": 28,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Anuradha",
+            "fieldType": "STAR",
+            "fieldValue": "17",
+            "id": 29,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Jyeshta",
+            "fieldType": "STAR",
+            "fieldValue": "18",
+            "id": 30,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Poorvashada",
+            "fieldType": "STAR",
+            "fieldValue": "20",
+            "id": 31,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Uthrashada",
+            "fieldType": "STAR",
+            "fieldValue": "21",
+            "id": 32,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Sravana",
+            "fieldType": "STAR",
+            "fieldValue": "22",
+            "id": 33,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Dhanishta",
+            "fieldType": "STAR",
+            "fieldValue": "23",
+            "id": 34,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Stabhishek",
+            "fieldType": "STAR",
+            "fieldValue": "24",
+            "id": 35,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Poorvabhadra",
+            "fieldType": "STAR",
+            "fieldValue": "25",
+            "id": 36,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Uthirabhadra",
+            "fieldType": "STAR",
+            "fieldValue": "26",
+            "id": 37,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Revathi",
+            "fieldType": "STAR",
+            "fieldValue": "27",
+            "id": 38,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "RELIGION": [
+        {
+            "fieldName": "Hindu",
+            "fieldType": "RELIGION",
+            "fieldValue": "1",
+            "id": 39,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Muslim - Shia",
+            "fieldType": "RELIGION",
+            "fieldValue": "2",
+            "id": 40,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Muslim - Sunni",
+            "fieldType": "RELIGION",
+            "fieldValue": "3",
+            "id": 41,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Muslim - Others",
+            "fieldType": "RELIGION",
+            "fieldValue": "4",
+            "id": 42,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Christian",
+            "fieldType": "RELIGION",
+            "fieldValue": "5",
+            "id": 43,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Sikh",
+            "fieldType": "RELIGION",
+            "fieldValue": "6",
+            "id": 44,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Jain - Digambar",
+            "fieldType": "RELIGION",
+            "fieldValue": "7",
+            "id": 45,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Jain - Shwetambar",
+            "fieldType": "RELIGION",
+            "fieldValue": "7",
+            "id": 46,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Jain - Others",
+            "fieldType": "RELIGION",
+            "fieldValue": "8",
+            "id": 47,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Parsi",
+            "fieldType": "RELIGION",
+            "fieldValue": "9",
+            "id": 48,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Buddhist",
+            "fieldType": "RELIGION",
+            "fieldValue": "10",
+            "id": 49,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Jewish",
+            "fieldType": "RELIGION",
+            "fieldValue": "11",
+            "id": 50,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Inter-Religion",
+            "fieldType": "RELIGION",
+            "fieldValue": "12",
+            "id": 51,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "MARITAL_STATUS": [
+        {
+            "fieldName": "Never Married",
+            "fieldType": "MARITAL_STATUS",
+            "fieldValue": "1",
+            "id": 52,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Widowed",
+            "fieldType": "MARITAL_STATUS",
+            "fieldValue": "2",
+            "id": 53,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Divorced",
+            "fieldType": "MARITAL_STATUS",
+            "fieldValue": "3",
+            "id": 54,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Awaiting Divorce",
+            "fieldType": "MARITAL_STATUS",
+            "fieldValue": "4",
+            "id": 55,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "FAMILY_STATUS": [
+        {
+            "fieldName": "Middle Class",
+            "fieldType": "FAMILY_STATUS",
+            "fieldValue": "1",
+            "id": 56,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Upper Middle Class",
+            "fieldType": "FAMILY_STATUS",
+            "fieldValue": "2",
+            "id": 57,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Rich",
+            "fieldType": "FAMILY_STATUS",
+            "fieldValue": "3",
+            "id": 58,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Affluent",
+            "fieldType": "FAMILY_STATUS",
+            "fieldValue": "4",
+            "id": 59,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "FAMILY_TYPE": [
+        {
+            "fieldName": "Joint",
+            "fieldType": "FAMILY_TYPE",
+            "fieldValue": "1",
+            "id": 60,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Nuclear",
+            "fieldType": "FAMILY_TYPE",
+            "fieldValue": "2",
+            "id": 61,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "FAMILY_VALUES": [
+        {
+            "fieldName": "Orthodox",
+            "fieldType": "FAMILY_VALUES",
+            "fieldValue": "1",
+            "id": 62,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Traditional",
+            "fieldType": "FAMILY_VALUES",
+            "fieldValue": "2",
+            "id": 63,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Moderate",
+            "fieldType": "FAMILY_VALUES",
+            "fieldValue": "3",
+            "id": 64,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Liberal",
+            "fieldType": "FAMILY_VALUES",
+            "fieldValue": "4",
+            "id": 65,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "COMPLEXION": [
+        {
+            "fieldName": "Dark",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "1",
+            "id": 66,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Fair",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "2",
+            "id": 67,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Fair - Medium",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "3",
+            "id": 68,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Fair - White",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "4",
+            "id": 69,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Wheatish",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "5",
+            "id": 70,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Wheatish - Brown",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "6",
+            "id": 71,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Wheatish - Medium",
+            "fieldType": "COMPLEXION",
+            "fieldValue": "7",
+            "id": 72,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "EDUCATION": [
+        {
+            "fieldName": "Bachelors",
+            "fieldType": "EDUCATION",
+            "fieldValue": "1",
+            "id": 73,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Masters",
+            "fieldType": "EDUCATION",
+            "fieldValue": "2",
+            "id": 74,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "OCCUPATION": [
+        {
+            "fieldName": "Engineer",
+            "fieldType": "OCCUPATION",
+            "fieldValue": "1",
+            "id": 75,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Doctor",
+            "fieldType": "OCCUPATION",
+            "fieldValue": "2",
+            "id": 76,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Teacher",
+            "fieldType": "OCCUPATION",
+            "fieldValue": "3",
+            "id": 77,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "CASTE": [
+        {
+            "fieldName": "VYSYA",
+            "fieldType": "CASTE",
+            "fieldValue": "1",
+            "id": 78,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "REDDY",
+            "fieldType": "CASTE",
+            "fieldValue": "2",
+            "id": 79,
+            "icon": null,
+            "parentKy": 0
+        },
+        {
+            "fieldName": "Brahmin",
+            "fieldType": "CASTE",
+            "fieldValue": "3",
+            "id": 80,
+            "icon": null,
+            "parentKy": 0
+        }
+    ],
+    "GOTRAM": [
+        {
+            "fieldName": "Mithunakula",
+            "fieldType": "GOTRAM",
+            "fieldValue": "1",
+            "id": 81,
+            "icon": null,
+            "parentKy": 0
+        }
+    ]
+}
+
+SearchByID:
+http://localhost:8080/ProjectK/rest/user/id/8P23
+Content-Type:application/json
+Authorization:BearereyJhbGciOiJIUzI1NiJ9.eyJmaXJzdE5hbWUiOiJUZXN0IEZpcnN0IE5hbWUgOTciLCJsYXN0TmFtZSI6IlRlc3QgTGFzdCBOYW1lIDk3IiwiY2xpZW50SWQiOiI4UDIiLCJwaG90b1BhdGgiOm51bGwsInBlcm1pc3Npb25zIjpbIk1ZUFJPRklMRSIsIkRBU0hCT0FSRCIsIlNFQVJDSCJdLCJ1c2VyUm9sZSI6bnVsbCwiZXhwIjoxNTM1NTcyMDA2LCJ1c2VySWQiOiJtYWhlc2hAOFAyIiwidXNlcktleSI6bnVsbH0.3QXI6JsAaAhqSjorgHSAdvffdBF___LuYZ-HVF44R94
+{
+    "id": 0,
+    "clientId": null,
+    "userId": "8P23",
+    "firstname": "Test First Name 3",
+    "lastname": "Test Last Name 3",
+    "email": null,
+    "dob": "1996-06-12",
+    "height": "123",
+    "complexion": null,
+    "education": "1",
+    "occupation": "3",
+    "maritalstatus": null,
+    "paternalGotram": "1",
+    "maternalGotram": "1",
+    "star": "3",
+    "rasi": "3",
+    "aboutSelf": "VGVzdDM=",
+    "salary": "8823234",
+    "mobileno": null,
+    "address": null,
+    "photoLink": "",
+    "videoLink": "",
+    "activeInd": null,
+    "recCrtTs": null,
+    "recCrtUsrKy": null,
+    "recLstUpdtTs": null,
+    "recLstUpdtKy": null,
+    "caste": "3",
+    "gender": "M",
+    "distance": 125080.89922625803
+}

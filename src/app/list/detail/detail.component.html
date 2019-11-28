@@ -16,7 +16,7 @@
   <ion-grid class="basic-Details">
     <ion-row>
       <ion-col style="text-align: center; font-size: 18px;">
-        Mahesh Bonagiri
+        {{profile.firstname}} {{profile.lastname}}
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -42,10 +42,12 @@
           Guna
         </ion-col>
         <ion-col size="3">
+            <fa-icon [icon]="['fas','male']" ></fa-icon>
           Groom
         </ion-col>
         <ion-col size="3">
-          Bride
+            <fa-icon [icon]="['fas','female']" ></fa-icon>
+             Bride
         </ion-col>
         <ion-col size="3">
           Points
@@ -56,13 +58,13 @@
           Varna
         </ion-col>
         <ion-col size="3">
-          Kshatriya
+            {{gunaMatchResults?.groomVarna}}
         </ion-col>
         <ion-col size="3">
-          Kshatriya
+            {{gunaMatchResults?.brideVarna}}
         </ion-col>
         <ion-col size="3">
-          1/1
+            {{gunaMatchResults?.varnaCnt}}/1
         </ion-col>
       </ion-row>
       <ion-row>
@@ -70,13 +72,13 @@
           Vashya
         </ion-col>
         <ion-col size="3">
-          Chatushpada
+            {{gunaMatchResults?.groomVasya}}
         </ion-col>
         <ion-col size="3">
-          Chatushpada
+            {{gunaMatchResults?.brideVasya}}
         </ion-col>
         <ion-col size="3">
-          2/2
+            {{gunaMatchResults?.vasyaCnt}}/2
         </ion-col>
       </ion-row>
       <ion-row>
@@ -84,13 +86,13 @@
           Star
         </ion-col>
         <ion-col size="3">
-          Aswini
+            {{gunaMatchResults?.groomStar}}
         </ion-col>
         <ion-col size="3">
-          Aswini
+            {{gunaMatchResults?.brideStar}}
         </ion-col>
         <ion-col size="3">
-          3/3
+            {{gunaMatchResults?.starCnt}}/3
         </ion-col>
       </ion-row>
       <ion-row>
@@ -98,13 +100,13 @@
           Yoni
         </ion-col>
         <ion-col size="3">
-          gurram
+            {{gunaMatchResults?.groomYoni}}
         </ion-col>
         <ion-col size="3">
-          gurram
+            {{gunaMatchResults?.brideYoni}}
         </ion-col>
         <ion-col size="3">
-          4/4
+            {{gunaMatchResults?.yoniCnt}}/4
         </ion-col>
       </ion-row>
       <ion-row>
@@ -112,13 +114,13 @@
           Graha Maitri
         </ion-col>
         <ion-col size="3">
-          kuja
+            {{gunaMatchResults?.groomGrahaMitri}}
         </ion-col>
         <ion-col size="3">
-          kuja
+            {{gunaMatchResults?.brideGrahaMitri}}
         </ion-col>
         <ion-col size="3">
-          5/5
+            {{gunaMatchResults?.grahaMitriCnt}}/5
         </ion-col>
       </ion-row>
       <ion-row>
@@ -126,13 +128,13 @@
           Gana
         </ion-col>
         <ion-col size="3">
-          Deva
+            {{gunaMatchResults?.groomGana}}
         </ion-col>
         <ion-col size="3">
-          Deva
+            {{gunaMatchResults?.brideGana}}
         </ion-col>
         <ion-col size="3">
-          6/6
+            {{gunaMatchResults?.ganaCnt}}/6
         </ion-col>
       </ion-row>
       <ion-row>
@@ -140,13 +142,13 @@
           Rashi
         </ion-col>
         <ion-col size="3">
-          Aries
+            {{gunaMatchResults?.groomRasi}}
         </ion-col>
         <ion-col size="3">
-          Aries
+            {{gunaMatchResults?.brideRasi}}
         </ion-col>
         <ion-col size="3">
-          7/7
+            {{gunaMatchResults?.rasiCnt}}/7
         </ion-col>
       </ion-row>
       <ion-row>
@@ -154,13 +156,13 @@
           Nadi
         </ion-col>
         <ion-col size="3">
-          Aadi
+            {{gunaMatchResults?.groomNadi}}
         </ion-col>
         <ion-col size="3">
-          Aadi
+            {{gunaMatchResults?.brideNadi}}
         </ion-col>
         <ion-col size="3">
-          0/8
+            {{gunaMatchResults?.nadiCnt}}/8
         </ion-col>
       </ion-row>
       <ion-row>
@@ -174,7 +176,7 @@
           Total Count
         </ion-col>
         <ion-col size="3">
-          28/36
+            {{gunaMatchResults?.totalCnt}}/36
         </ion-col>
       </ion-row>
       </ion-grid>
@@ -187,91 +189,65 @@
       statss
 
     </div>
-    <div *ngSwitchDefault style="background: #fbf8f8;font-family: Verdana, Geneva, Tahoma, sans-serif;">
+    <div *ngSwitchDefault >
 
 
       <ion-grid class="basic-Details">
 
         <ion-row>
           <ion-col>
-            27 yrs, 5' 5'
+            {{profile.age}} yrs, {{profile.height?.cms}} cms
           </ion-col>
           <ion-col>
-            Bachelors, Software Engineer
+              {{profile.weight}} kgs, {{profile.bmi}} BMI
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
+                {{profile?.occupation}} <ion-icon name="school"></ion-icon> {{profile?.education}}
+            </ion-col>
+            <ion-col>
+              {{profile.maritalstatus}}
+            </ion-col>
+          </ion-row>
+        <ion-row>
+          <ion-col>
+              {{profile.religion}}, {{profile.caste}}
+          </ion-col>
+          <ion-col>
+              {{profile.star}} / {{profile.rasi}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            Rohini/ Aries
+            {{profile.paternalGotram}}, {{profile.maternalGotram}}
           </ion-col>
           <ion-col>
-            Fair -White
+            {{profile.familyType}}, {{profile.familyStatus}}, {{profile.familyValues}}
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            Mithunakula, Mithunakula
+              {{profile.complexion}}
           </ion-col>
           <ion-col>
-            Joint, Middleclass, Orthodox
+              <fa-icon [icon]="['fas','dollar-sign']" ></fa-icon>
+              {{profile?.salary}}
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-            Hindu, Vysya
-          </ion-col>
-          <ion-col>
-            10,00,00,000
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            69 kgs, 18.5 BMI
-          </ion-col>
-          <ion-col>
-            Never Married
-          </ion-col>
-        </ion-row>
-
         <ion-row style="border-top: 1px solid #c1c4cd; margin-top:10px">
           <ion-col>
-            Now that your app has been created, you'll want to start building out features and components. Check out
-            some of
-            the resources below for next steps.
-
-
-
-
+            {{profile.aboutSelf}}
           </ion-col>
-
         </ion-row>
       </ion-grid>
-
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-      <ion-chip style="pointer-events: none;">
-        <ion-label> Default</ion-label>
-      </ion-chip>
-
+      
+      <div *ngFor="let tag of profile.tags">
+          <ion-chip style="pointer-events: none;">
+              <ion-label> {{tag}}</ion-label>
+            </ion-chip>
+      </div>
     </div>
-
   </div>
-
-
-
-
-
 </ion-content>

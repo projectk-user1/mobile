@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { AppConstants } from 'src/app/constants/config.constants';
 import { NavController } from '@ionic/angular';
+import { RestService } from 'src/app/services/rest.service';
+import { UserDashboardDetails } from 'src/app/_models/user/user-dashboard';
+import { MasterFieldsService } from 'src/app/services/master-fields/master-fields.service';
 
 @Component({
   selector: 'app-dashboard-detail',
@@ -9,64 +13,62 @@ import { NavController } from '@ionic/angular';
 })
 export class DashboardDetailComponent implements OnInit {
   private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  private images =[ 
-    'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ',
-    'https://lh5.googleusercontent.com/2kP5Bms20JOCLLIpA-4ym0B7Ln6ElWVrAlw5reppcCNcv9FJuyhr-I6V0xI',
-    'https://lh4.googleusercontent.com/mO03ov7EvVC-U6C99KzdQy8HCrVOEDdRHuzlB4XFvld769-OwwvLqJW9R6Q',
-    'https://lh5.googleusercontent.com/WAFlWOoKXXNCT2-BguvTp38br0ihxZX3t7Y4Kv7iB1cGHmp8kTVBb2NykFA',
-    'https://lh3.googleusercontent.com/8vGmplduFWzJuSij00VnYQHzezRtXEoioQCbr1ZAmlw4FJqnN3KwZQQNbgA',
-    'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ',
-    'https://lh5.googleusercontent.com/2kP5Bms20JOCLLIpA-4ym0B7Ln6ElWVrAlw5reppcCNcv9FJuyhr-I6V0xI',
-    'https://lh4.googleusercontent.com/mO03ov7EvVC-U6C99KzdQy8HCrVOEDdRHuzlB4XFvld769-OwwvLqJW9R6Q',
-    'https://lh5.googleusercontent.com/WAFlWOoKXXNCT2-BguvTp38br0ihxZX3t7Y4Kv7iB1cGHmp8kTVBb2NykFA',
-    'https://lh3.googleusercontent.com/8vGmplduFWzJuSij00VnYQHzezRtXEoioQCbr1ZAmlw4FJqnN3KwZQQNbgA'
-  ]
-  public items: Array<{ profileId:string,firstName:string,
-    age:string,height:string,maritalStatus:string,
-    occupation:string,education:string,
-    distance:string,gunacount:string,salary:string, title: string; note: string; icon: string }> = [];
-  constructor(public navCtrl: NavController,private router: Router,private route: ActivatedRoute) {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        profileId: '8P2' + i,
-        firstName:'Mahesh',
-        age:Math.floor(Math.random() * this.images.length)+'',
-        height:'5 ft 3 in',
-        maritalStatus:'unmarried',
-        occupation:'Software Engineer',
-        education:'B. Tech',
-        distance:'180 km',
-        gunacount:'24',
-        salary:'100000',
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.images[Math.floor(Math.random() * this.images.length)]
-      });
+  events = {
+    sent: {
+      key: 'sent',
+      data: [],
+      text: 'Sent'
+    },
+    received: {
+      key: 'received',
+      data: [],
+      text: 'Received'
     }
-  }
-  
+  };
+
+  eventsAsArray;
+
+  eventType;
+
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router,
+    private _restService: RestService, 
+    private masterFieldsService: MasterFieldsService,
+    public navCtrl: NavController
+  ) { }
 
   ngOnInit() {
-    console.log(this.route.snapshot.paramMap.get('id'));
+    if (!this.masterFieldsService.userPrefs) {
+      this._restService.httpGetServiceCall(AppConstants.mstrFieldsEndPoint).subscribe((res: any) => {
+        this.masterFieldsService.createMstrFieldMap(res);
+        this.masterFieldsService.userPrefs = res;
+      }, error => {
+        console.log('Error');
+      });
+    }
+    this.eventsAsArray = Object.keys(this.events);
+    let id = this.route.snapshot.paramMap.get('id');
+    this.eventType = UserDashboardDetails.eventDetails.find(event => event.id === +id)
+    this.eventsAsArray.forEach(event => {
+      this._restService.httpGetServiceCall(`events/myEvents/${this.events[event].key}/${id}`).subscribe(profiles => {
+        this.events[event].data = <any[]>profiles;
+        console.log(this.events[event].data);
+       this.events[event].data.forEach((obj) => {
+        obj=this.parseSearchResults(obj);
+      })
+      });
+    });
   }
 
+  parseSearchResults(obj) {
+    return this.masterFieldsService.parseSearchResults(obj);
+  }
   backToDashboard(){
     this.navCtrl.back()
   }
   showProfile(item:any){
-    this.navCtrl.navigateForward(`/list/details/${item.profileId}`);
+    this.navCtrl.navigateForward(`/list/details/${item.userId}`);
   }
+  
 }
-

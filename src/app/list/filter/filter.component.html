@@ -19,75 +19,76 @@
           <ion-item>
             <ion-label>Gender</ion-label>
             <ion-select placeholder="Select One" [(ngModel)]="selectedGender">
-              <ion-select-option value="f">Female</ion-select-option>
-              <ion-select-option value="m">Male</ion-select-option>
+                <ion-select-option *ngFor="let gender of [{name: 'Male', key: 'M'}, {name: 'Female', key: 'F'}]"
+                [value]="gender.key">
+                {{gender.name}}</ion-select-option>
+              
             </ion-select>
+            
           </ion-item>
         <ion-item>
             <ion-label>Marital Status</ion-label>
             <ion-select placeholder="Select One" [(ngModel)]="selectedMaritalStatus">
-              <ion-select-option value="u">Unmarried</ion-select-option>
-              <ion-select-option value="d">Divorced</ion-select-option>
-              <ion-select-option value="w">Widow/Widower</ion-select-option>
+                <ion-select-option *ngFor="let maritalstatus of userPrefs.MARITAL_STATUS"
+                [value]="maritalstatus.fieldValue">{{maritalstatus.fieldName}}</ion-select-option>
             </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Education</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedEducation">
-                <ion-select-option value="bTech">B.Tech</ion-select-option>
-                <ion-select-option value="mTech">M.Tech</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedEducation" multiple="true">
+                <ion-select-option *ngFor="let education of userPrefs.EDUCATION"
+                [value]="education.fieldValue">{{education.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Caste</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedCaste">
-                <ion-select-option value="vysya">Vysya</ion-select-option>
-                <ion-select-option value="reddy">Reddy</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedCaste" multiple="true">
+                <ion-select-option *ngFor="let caste of userPrefs.CASTE" [value]="caste.fieldValue">
+                    {{caste.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Religion</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedReligion">
-                <ion-select-option value="hindu">Hindu</ion-select-option>
-                <ion-select-option value="muslim">Muslim</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedReligion" multiple="true">
+                <ion-select-option *ngFor="let religion of userPrefs.RELIGION" [value]="religion.fieldValue">
+                    {{religion.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Family Status</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyStatus">
-                <ion-select-option value="rich">Rich</ion-select-option>
-                <ion-select-option value="muslim">Affulant</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyStatus" multiple="true">
+                <ion-select-option *ngFor="let fs of userPrefs.FAMILY_STATUS" [value]="fs.fieldValue">
+                    {{fs.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Family Type</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyType">
-                <ion-select-option value="FT1">FT1</ion-select-option>
-                <ion-select-option value="FT2">FT2</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyType" multiple="true">
+                <ion-select-option *ngFor="let ft of userPrefs.FAMILY_TYPE" [value]="ft.fieldValue">
+                    {{ft.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Family Values</ion-label>
-              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyValues">
-                <ion-select-option value="FV1">FV1</ion-select-option>
-                <ion-select-option value="FV2">FV2</ion-select-option>
+              <ion-select placeholder="Select One" [(ngModel)]="selectedFamilyValues" multiple="true">
+                <ion-select-option *ngFor="let fv of userPrefs.FAMILY_VALUES" [value]="fv.fieldValue">
+                    {{fv.fieldName}}</ion-select-option>
               </ion-select>
           </ion-item>
           <ion-item>
               <ion-label>Age</ion-label>
-              <ion-range min="21" max="60" dual-knobs color="secondary" [(ngModel)]="selectedAgeRange">
-                <ion-label slot="start">21</ion-label>
-                <ion-label slot="end">60</ion-label>
+              <ion-range min="19" max="45" dual-knobs color="secondary" [(ngModel)]="selectedAgeRange">
+                <ion-label slot="start">19</ion-label>
+                <ion-label slot="end">45</ion-label>
               </ion-range>
             </ion-item>
             <ion-item lines="none">
               <ion-label class="filter-label">Height (cms)</ion-label>
-              
             </ion-item>
             <ion-item>
-              <ion-range min="101" max="170" dual-knobs color="secondary"  [(ngModel)]="selectedHeightRange">
+              <ion-range min="101" max="300" dual-knobs color="secondary"  [(ngModel)]="selectedHeightRange">
                 <ion-label slot="start">101</ion-label>
-                <ion-label slot="end">170</ion-label>
+                <ion-label slot="end">300</ion-label>
               </ion-range>
             </ion-item>
             <ion-item lines="none">
@@ -103,9 +104,9 @@
             </ion-item>
             <ion-item>
               <ion-label>Distance</ion-label>
-              <ion-range min="1" max="10000000" color="secondary" [(ngModel)]="selectedMaxDistance">
+              <ion-range min="1" max="6400" color="secondary" [(ngModel)]="selectedMaxDistance">
                 <ion-label slot="start">1</ion-label>
-                <ion-label slot="end">6500</ion-label>
+                <ion-label slot="end">6400</ion-label>
               </ion-range>
             </ion-item>
         </ion-list>

@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        Contact Us
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+<ion-content>
+  <ion-list lines="none">
+    <ion-item>
+        <ion-avatar slot="start">
+            <img [src]="clientInfo?.clntLogo" alt="" fullscreen class="center" />
+            <img src="https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ" alt="" fullscreen class="center" />
+        </ion-avatar>
+        <ion-label>
+            {{clientInfo?.clientName}}
+        </ion-label>
+      </ion-item>
+    <div style="margin-bottom:20px;"></div>
+  </ion-list>
+  <ion-list >
+  <ion-list-header>
+      <ion-label>Contact Details</ion-label>
+    </ion-list-header>
+    <ion-item >
+        <ion-icon slot="start" color="medium" name="call"></ion-icon>
+        <a [href]="'tel:' + clientInfo?.mobileNo">{{clientInfo?.mobileNo}}</a>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" color="medium" name="mail"></ion-icon>
+        <a [href]="'mailto:' + clientInfo?.email"> {{clientInfo?.email}}</a>
+    </ion-item>
+    <ion-item>
+        <ion-icon slot="start" color="medium" name="pin"></ion-icon>
+        <a [href]=clientInfo?.geotag> 
+          {{clientInfo?.address}}</a>
+        <!-- <a class="button-green button-green--large" href="geo:<lat>,<long>?q=<lat>,<long>(Label+Name)">Locate</a> -->
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -72,6 +72,8 @@
         </ion-button>
         <ion-button style="width: 25%;" fill="clear" (click)="openMessageBox(user)">
           <ion-icon name="chatboxes" slot="icon-only" color="medium"></ion-icon>
+          <ion-label *ngIf="user.commentsCnt >0">
+          ({{user.commentsCnt}})</ion-label>
         </ion-button>
         <ion-button style="width: 25%;" fill="clear" (click)="sendShare(user)">
           <ion-icon name="share" slot="icon-only" color="medium" ></ion-icon>

@@ -106,4 +106,68 @@ export class DetailComponent implements OnInit {
   parseSearchResults(obj) {
     return this.masterFieldsService.parseSearchResults(obj);
   }
+  updateFavouriteEvent(userInfo: any) {
+    console.log('on Update Event' + userInfo);
+    let eventModeUrl = "/create";
+    let postObj:any = {};
+    userInfo.eventLogs.forEach(element => {
+      if (element.eventType == 3) {
+        postObj.id = element.id;
+        eventModeUrl = "/deleteEventLog"
+      }
+    });
+    postObj.clntId = userInfo.clientId;
+    postObj.toUserId = userInfo.userId;
+    postObj.fromUserId = UserSession.getUserSession().userInfo.userId
+    postObj.eventType = 3;
+    this._restService.httpPostCall('/events' + eventModeUrl, postObj).subscribe((result) => {
+      if (eventModeUrl == "/deleteEventLog") {
+        userInfo.favorite = "medium";
+        userInfo.eventLogs.forEach(element => {
+          if (element.eventType == 3) {
+            const index: number = userInfo.eventLogs.indexOf(element);
+            if (index !== -1) {
+              userInfo.eventLogs.splice(index, 1);
+            }
+          }
+        });
+      } else {
+        userInfo.favorite = "primary";
+        let eventLog: any = {};
+        eventLog.id = result;
+        eventLog.clntId = userInfo.clientId;
+        eventLog.eventType = 3;
+        userInfo.eventLogs.push(eventLog);
+      }
+    })
+  }
+  updateLikeEvent(userInfo: any) {
+    console.log('on Update Event' + userInfo);
+    let eventModeUrl = "/create";
+    let postObj:any = {};
+    userInfo.eventLogs.forEach(element => {
+      if (element.eventType == 1) {
+        postObj.id = element.id;
+        eventModeUrl = "/deleteEventLog"
+      }
+    });
+    postObj.clntId = userInfo.clientId;
+    postObj.toUserId = userInfo.userId;
+    postObj.fromUserId = UserSession.getUserSession().userInfo.userId
+    postObj.eventType = 1;
+    console.log(userInfo.eventLogs);
+    this._restService.httpPostCall('/events' + eventModeUrl, postObj).subscribe((result) => {
+      if (eventModeUrl == "/deleteEventLog") {
+        userInfo.likeColor = "medium";
+        userInfo.eventLogs=userInfo.eventLogs.filter(item => item.eventType !=1);
+      } else {
+        userInfo.likeColor = "primary";
+        let eventLog: any = {};
+        eventLog.id = result;
+        eventLog.clntId = userInfo.clientId;
+        eventLog.eventType = 1;
+        userInfo.eventLogs.push(eventLog);
+      }
+    })
+  }
 }

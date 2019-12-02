@@ -26,3 +26,22 @@
     }
     font-size: small;
   }
+  .timeline-label{
+    p{
+     font-size: 14px;
+   }
+ }
+ .restnt-banner-img {
+  position: relative;
+  margin-top: -52px;
+}
+.restnt-banner-img .banner-lable {
+  background: rgba(255,255,255,0);
+  color: #212121;
+  position: fixed;
+  left: 0;
+  top: 0;
+  padding: 10px;
+  width: 100%;
+  z-index: 11;
+}

@@ -1,0 +1,44 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToList();"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 16px;">Update Profile Pic/Video </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen class="ion-padding ">
+  <form [formGroup]="myProfilePicForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label position="floating">
+            <ion-icon   name="camera"></ion-icon>
+            
+          Profile Picture <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" formControlName="photoLink" id="photoLink"></ion-input>
+      </ion-item>
+      <ion-item>
+        <img [src]="myProfilePicForm.controls.photoLink?.value" width=40>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">
+            <ion-icon name="videocam"></ion-icon>
+          Video Link <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required type="text" formControlName="videoLink" id="videoLink"></ion-input>
+      </ion-item>
+      <!--
+      <iframe src="https://www.youtube.com/embed/H4PuzftME7s" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen ></iframe>
+      -->
+      <!-- Display preview of video -->
+    </ion-list>
+
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="picUpdate()">Update</ion-button>
+    </div>
+
+
+  </form>
+</ion-content>

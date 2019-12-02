@@ -79,14 +79,15 @@ export class MasterFieldsService {
   parseSearchResults(obj) {
     let commentsCnt = 0;
     obj.disableLike = false;
+    obj.favorite = 'medium'
+    obj.likeColor= 'medium';
     if (null != obj.eventLogs) {
-      obj.favorite = 'medium'
-      obj.likeColor= 'medium';
       obj.eventLogs.forEach(element => {
         if (element.eventType == 1) {
           obj.likeColor="primary";
         } if (element.eventType == 2) {
           commentsCnt = commentsCnt + 1;
+          element.message=this.messageTemplateMap.get(element.message).fieldName;
         } else if (element.eventType == 3) {
           obj.favorite = "primary";
         }

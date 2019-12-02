@@ -28,6 +28,16 @@ export class AppComponent implements OnInit{
       icon: 'person'
     },
     {
+      title: 'Contact Us',
+      url: '/contact-us',
+      icon: 'contact'
+    },
+    {
+      title: 'Settings',
+      url: '/settings',
+      icon: 'settings'
+    },
+    {
       title: 'Logout',
       url: '/logout',
       icon: 'log-out'

@@ -87,4 +87,18 @@ export class FilterComponent implements OnInit {
     this.commonService.setFilter(postObj);
     this.navCtrl.back()
   }
+  clearFilters(){
+  this.selectedGender='';
+  this.selectedMaritalStatus='';
+  this.selectedEducation='';
+  this.selectedCaste='';
+  this.selectedReligion='';
+  this.selectedFamilyStatus='';
+  this.selectedFamilyType='';
+  this.selectedFamilyValues='';
+  this.selectedMinSalary='';
+  this.selectedMaxDistance='';
+  this.selectedAgeRange={ lower: 19, upper: 45 };
+    this.selectedHeightRange={ lower: 101, upper: 170 };
+  }
 }

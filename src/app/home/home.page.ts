@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, LoadingController } from '@ionic/angular';
 import { NavigationExtras } from '@angular/router';
 import { RestService } from '../services/rest.service';
 import { UserDashboardDetails } from '../_models/user/user-dashboard';
@@ -7,6 +7,8 @@ import { forkJoin } from 'rxjs';
 import { EventConfig } from '../_models/user/user-event.config';
 import { MasterFieldsService } from '../services/master-fields/master-fields.service';
 import { AppConstants } from '../constants/config.constants';
+import { LoadingService } from '../services/loading.service';
+import { UserSession } from '../_models/UserSession';
 
 @Component({
   selector: 'app-home',
@@ -17,19 +19,22 @@ import { AppConstants } from '../constants/config.constants';
 export class HomePage implements OnInit {
 
   eventCards = UserDashboardDetails.eventDetails;
-  loading = true;
   userEvents = [];
-  
-  constructor(public navCtrl: NavController,private _restService: RestService,private masterFieldsService: MasterFieldsService) { }
+  loggedInUser:any;
+  constructor(public navCtrl: NavController,
+              private _restService: RestService,
+              private masterFieldsService: MasterFieldsService,
+              public loading: LoadingService) { }
 
   ngOnInit() {
+    this.loading.present();
+    this.loggedInUser=UserSession.getUserSession().userInfo.userId;
     this.eventCards.forEach(card => {
       forkJoin([
         this._restService.httpGetServiceCall(`events/myEventsCnt/sent/${card.id}`),
         this._restService.httpGetServiceCall(`events/myEventsCnt/received/${card.id}`)])
         .subscribe(sentReceived => {
           card.body = sentReceived[0] + '/' + sentReceived[1];
-          this.loading = false;
         })
     })
     if (!this.masterFieldsService.userPrefs) {
@@ -40,13 +45,16 @@ export class HomePage implements OnInit {
         this.masterFieldsService.createMstrFieldMap(res[0]);
         this.masterFieldsService.userPrefs = res[0];
         this.addAdditionalDetails(res[1]);
+        this.loading.dismiss();
       }, error => {
-
+        this.loading.dismiss();
       });
     }else{
       this._restService.httpGetServiceCall('events/myEvents').subscribe((events) => {
         this.addAdditionalDetails(events);
-        this.loading = false;
+        this.loading.dismiss();
+      }, error =>{
+        this.loading.dismiss();
       })
     }
   }
@@ -69,4 +77,8 @@ export class HomePage implements OnInit {
   showDetails(type:any) {
     this.navCtrl.navigateForward(`/home/details/${type}`);
   }
+  showProfile(userId:any){
+    this.navCtrl.navigateForward(`/list/details/${userId}`);
+  }
+  
 }

@@ -1,0 +1,79 @@
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToList();"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 16px;">Update Preferences </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content fullscreen class="ion-padding ">
+  <form  [formGroup]="partnerPreferenceForm">
+    <ion-list>
+      <ion-item>
+        <ion-label>Gender</ion-label>
+        <ion-select placeholder="Select One" formControlName="gender">
+          <ion-select-option *ngFor="let gender of [{name: 'Male', key: 'M'}, {name: 'Female', key: 'F'}]"
+            [value]="gender.key">
+            {{gender.name}}</ion-select-option>
+
+        </ion-select>
+
+      </ion-item>
+      <ion-item>
+        <ion-label>Marital Status</ion-label>
+        <ion-select placeholder="Select One" formControlName="maritalstatus">
+          <ion-select-option *ngFor="let maritalstatus of userPrefs.MARITAL_STATUS" [value]="maritalstatus.fieldValue">
+            {{maritalstatus.fieldName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Caste</ion-label>
+        <ion-select placeholder="Select One" formControlName="caste" multiple="true">
+          <ion-select-option *ngFor="let caste of userPrefs.CASTE" [value]="caste.fieldValue">
+            {{caste.fieldName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Complexion</ion-label>
+        <ion-select placeholder="Select One" formControlName="complexion" multiple="true">
+          <ion-select-option *ngFor="let complexion of userPrefs.COMPLEXION" [value]="complexion.fieldValue">
+            {{complexion.fieldName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Education</ion-label>
+        <ion-select placeholder="Select One" formControlName="education" multiple="true">
+          <ion-select-option *ngFor="let education of userPrefs.EDUCATION" [value]="education.fieldValue">
+            {{education.fieldName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Occupation</ion-label>
+        <ion-select placeholder="Select One" formControlName="occupation" multiple="true">
+          <ion-select-option *ngFor="let occupation of userPrefs.OCCUPATION" [value]="occupation.fieldValue">
+            {{occupation.fieldName}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Star</ion-label>
+        <ion-select placeholder="Select One" formControlName="star" multiple="true">
+          <ion-select-option *ngFor="let star of userPrefs.STAR" [value]="star.fieldValue">{{star.fieldName}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
+        <ion-label>Rasi</ion-label>
+        <ion-select placeholder="Select One" formControlName="rasi" multiple="true">
+          <ion-select-option *ngFor="let rasi of userPrefs.RASI" [value]="rasi.fieldValue">{{rasi.fieldName}}
+          </ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <div class="ion-padding">
+      <ion-button expand="block" type="submit" class="ion-no-margin" (click)="partnerPreferenceUpdate()">Update
+      </ion-button>
+    </div>
+  </form>
+</ion-content>

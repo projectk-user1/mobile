@@ -3,16 +3,24 @@
     <ion-buttons slot="start">
       <ion-back-button (click)="backToList();"></ion-back-button>
     </ion-buttons>
-    <ion-title style="font-size: 16px;">{{profileId}} </ion-title>
+    <ion-title style="font-size: 16px;">{{profile.profileId}} </ion-title>
     <ion-buttons slot="end">
       <ion-button fill="clear" (click)="sendShare()">
         <ion-icon name="share" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" (click)="updateFavouriteEvent(profile)">
+          <ion-icon name="heart" slot="icon-only" [color]="profile.favorite"></ion-icon>
+      </ion-button>
+      <ion-button fill="clear" (click)="updateLikeEvent(profile)">
+          <ion-icon name="thumbs-up" slot="icon-only" [color]="profile.likeColor"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding ">
-  <img [src]="profile.photoLink" alt="" fullscreen class="center" />
+  
+  <img [src]="profile.photoLink"  />
+  
   <ion-grid class="basic-Details">
     <ion-row>
       <ion-col style="text-align: center; font-size: 18px;">
@@ -27,196 +35,200 @@
       <ion-segment-button value="astrology">
         <ion-label>Astrology</ion-label>
         </ion-segment-button>
-      <ion-segment-button value="stats">
-        <ion-label>Stats</ion-label>
+      <ion-segment-button value="history">
+        <ion-label>Log</ion-label>
         </ion-segment-button>
-      </ion-segment>
-
+    <!-- <ion-segment-button value="stats">
+        <ion-label>Stats</ion-label>
+    </ion-segment-button> -->
+  </ion-segment>
 
   <div [ngSwitch]="selected">
     <div *ngSwitchCase="'astrology'">
-    
-    <ion-grid class="basic-Details grid-table">
-      <ion-row>
-        <ion-col size="3">
-          Guna
-        </ion-col>
-        <ion-col size="3">
-            <fa-icon [icon]="['fas','male']" ></fa-icon>
-          Groom
-        </ion-col>
-        <ion-col size="3">
-            <fa-icon [icon]="['fas','female']" ></fa-icon>
-             Bride
-        </ion-col>
-        <ion-col size="3">
-          Points
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Varna
-        </ion-col>
-        <ion-col size="3">
+      <ion-grid class="basic-Details grid-table">
+        <ion-row>
+          <ion-col size="3">
+            Guna
+          </ion-col>
+          <ion-col size="3">
+            <fa-icon [icon]="['fas','male']"></fa-icon>
+            Groom
+          </ion-col>
+          <ion-col size="3">
+            <fa-icon [icon]="['fas','female']"></fa-icon>
+            Bride
+          </ion-col>
+          <ion-col size="3">
+            Points
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Varna
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomVarna}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideVarna}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.varnaCnt}}/1
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Vashya
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Vashya
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomVasya}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideVasya}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.vasyaCnt}}/2
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Star
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Star
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomStar}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideStar}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.starCnt}}/3
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Yoni
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Yoni
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomYoni}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideYoni}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.yoniCnt}}/4
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Graha Maitri
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Graha Maitri
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomGrahaMitri}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideGrahaMitri}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.grahaMitriCnt}}/5
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Gana
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Gana
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomGana}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideGana}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.ganaCnt}}/6
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Rashi
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Rashi
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomRasi}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideRasi}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.rasiCnt}}/7
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          Nadi
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+            Nadi
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.groomNadi}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.brideNadi}}
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.nadiCnt}}/8
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col size="3">
-          
-        </ion-col>
-        <ion-col size="3">
-          
-        </ion-col>
-        <ion-col size="3">
-          Total Count
-        </ion-col>
-        <ion-col size="3">
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="3">
+
+          </ion-col>
+          <ion-col size="3">
+
+          </ion-col>
+          <ion-col size="3">
+            Total Count
+          </ion-col>
+          <ion-col size="3">
             {{gunaMatchResults?.totalCnt}}/36
-        </ion-col>
-      </ion-row>
+          </ion-col>
+        </ion-row>
       </ion-grid>
-   	 	
-			
-	
-
     </div>
-    <div *ngSwitchCase="'stats'">
-      statss
-
+    <div *ngSwitchCase="'history'">
+        <div *ngFor="let event of profile.eventLogs">
+            <ion-item>
+              <ion-icon slot="end" color="medium" name="thumbs-up" *ngIf="event.eventType==1"></ion-icon>
+              <ion-icon slot="end" color="medium" name="text" *ngIf="event.eventType==2"></ion-icon>
+              <ion-icon slot="end" color="medium" name="heart" *ngIf="event.eventType==3"></ion-icon>
+              <ion-label class="timeline-label ion-text-wrap">
+                <!-- <p>{{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}</p> -->
+                <p *ngIf="event?.message">{{event?.message}}</p>
+                <p>{{event?.recCrtTs}} </p>
+              </ion-label>
+            </ion-item>
+          </div>
     </div>
-    <div *ngSwitchDefault >
-
-
+    <div *ngSwitchDefault>
       <ion-grid class="basic-Details">
-
         <ion-row>
           <ion-col>
             {{profile.age}} yrs, {{profile.height?.cms}} cms
           </ion-col>
           <ion-col>
-              {{profile.weight}} kgs, {{profile.bmi}} BMI
+            {{profile.weight}} kgs, {{profile.bmi}} BMI
           </ion-col>
         </ion-row>
         <ion-row>
-            <ion-col>
-                <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
-                {{profile?.occupation}} <ion-icon name="school"></ion-icon> {{profile?.education}}
-            </ion-col>
-            <ion-col>
-              {{profile.maritalstatus}}
-            </ion-col>
-          </ion-row>
-        <ion-row>
           <ion-col>
-              {{profile.religion}}, {{profile.caste}}
+            <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+            {{profile?.occupation}} <ion-icon name="school"></ion-icon> {{profile?.education}}
           </ion-col>
           <ion-col>
-              {{profile.star}} / {{profile.rasi}}
+            {{profile.maritalstatus}}
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            {{profile.religion}}, {{profile.caste}}
+          </ion-col>
+          <ion-col>
+            {{profile.star}} / {{profile.rasi}}
           </ion-col>
         </ion-row>
         <ion-row>
@@ -229,11 +241,11 @@
         </ion-row>
         <ion-row>
           <ion-col>
-              {{profile.complexion}}
+            {{profile.complexion}}
           </ion-col>
           <ion-col>
-              <fa-icon [icon]="['fas','dollar-sign']" ></fa-icon>
-              {{profile?.salary}}
+            <fa-icon [icon]="['fas','dollar-sign']"></fa-icon>
+            {{profile?.salary}}
           </ion-col>
         </ion-row>
         <ion-row style="border-top: 1px solid #c1c4cd; margin-top:10px">
@@ -242,12 +254,15 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-      
+
       <div *ngFor="let tag of profile.tags">
-          <ion-chip style="pointer-events: none;">
-              <ion-label> {{tag}}</ion-label>
-            </ion-chip>
+        <ion-chip style="pointer-events: none;">
+          <ion-label> {{tag}}</ion-label>
+        </ion-chip>
       </div>
     </div>
+    <!-- <div *ngSwitchCase="'stats'">
+      statss
+    </div> -->
   </div>
 </ion-content>

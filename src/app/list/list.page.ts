@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, PopoverController } from '@ionic/angular';
+import { NavController, PopoverController, ToastController } from '@ionic/angular';
 import { DetailComponent } from './detail/detail.component';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common-service.service';
@@ -10,7 +10,7 @@ import { AppConstants } from '../constants/config.constants';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { UserSession } from '../_models/UserSession';
 import { CommentComponent } from './comment/comment.component';
-
+import { ToastService } from '../services/toast.service';
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -49,10 +49,11 @@ export class ListPage implements OnInit {
               private _restService: RestService, 
               private masterFieldsService: MasterFieldsService,
               private socialSharing: SocialSharing,
-              public popoverController: PopoverController) {
+              public popoverController: PopoverController,
+              public toastService: ToastService) {
     
   }
-  ngOnInit() {
+  ionViewWillEnter() {
     // console.log(this.route.snapshot.paramMap.get('id'));
     if (this.masterFieldsService.userPrefs) {
       this.userPrefs = this.masterFieldsService.userPrefs;
@@ -67,23 +68,26 @@ export class ListPage implements OnInit {
       });
     }
     this.postObj = {};
-    this.commonService.filterValueChanged.subscribe(res =>{
+    this.commonService.filterValueChanged.subscribe(res => {
       console.log(res);
-      this.postObj=res;
+      this.postObj = res;
       this.search();
     },
-    errror => {
-      console.warn("something went wrong", errror);
-    })
-    this.commonService.commentApplied.subscribe(res =>{
+      errror => {
+        console.warn("something went wrong", errror);
+      })
+    this.commonService.commentApplied.subscribe(res => {
       console.log(res);
-      
+
       this.updateCommentEvent(res);
     },
-    errror => {
-      console.warn("something went wrong", errror);
-    })
+      errror => {
+        console.warn("something went wrong", errror);
+      })
     this.search();
+  }
+  ngOnInit() {
+    
   }
 
   
@@ -257,10 +261,12 @@ updateCommentEvent(selctedMsgTmplt:any){
   console.log(this.selectedUser.eventLogs);
   this._restService.httpPostCall('/events' + eventModeUrl, this.postObj).subscribe((result) => {
     console.log(result);
+    this.toastService.presentToast('Message Sent Successfully');
   })
   
 }
 async dismissPopover() {
   await this.popoverController.dismiss();
 }
+
 }

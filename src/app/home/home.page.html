@@ -185,16 +185,23 @@
       <ion-label>Time Line</ion-label>
     </ion-list-header>
   <div *ngFor="let event of userEvents">
-      <ion-item >
-          <ion-icon slot="start" color="medium" [name]="event?.icon"></ion-icon>
+      <ion-item button (click)="showProfile(event?.toUserId?.userId);">
+          <ion-icon slot="end" color="primary" [name]="event?.icon"></ion-icon>
           <ion-avatar slot="start">
-              <img *ngIf="event.toUserId.photoLink" [src]="event.toUserId.photoLink" >
+              <img *ngIf="event?.toUserId?.photoLink" [src]="event?.toUserId?.photoLink" >
           </ion-avatar>
-          <ion-label class="timeline-label">
-              <p>{{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}</p>
-              <p>{{event?.recCrtTs}} </p>
-              <p *ngIf="event?.message">{{event.message}}</p>
-            </ion-label>
+          <ion-label class="timeline-label ion-text-wrap">
+            <p *ngIf="event?.fromUserId?.userId==loggedInUser">
+              <ion-icon name="send"></ion-icon>
+              {{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}
+            </p>
+            <p *ngIf="event?.toUserId?.userId==loggedInUser">
+              <ion-icon name="send" style="transform: rotate(180deg);"></ion-icon>
+              {{event?.fromUserId?.userId}} {{event?.fromUserId?.firstname}}
+            </p>
+            <p>{{event?.recCrtTs}} </p>
+            <p *ngIf="event?.message">{{event?.message}}</p>
+          </ion-label>
         </ion-item>
   </div>
   <!-- <ion-list lines="none">

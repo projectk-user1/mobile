@@ -165,7 +165,8 @@ export class ListPage implements OnInit {
 
   formatCurrency(number){
     return number.toLocaleString('en-IN', {
-       maximumFractionDigits: 2,
+      maximumFractionDigits: 0, 
+      minimumFractionDigits: 0,
        style: 'currency',
        currency: 'INR'
    });

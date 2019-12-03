@@ -71,4 +71,12 @@ export class DashboardDetailComponent implements OnInit {
     this.navCtrl.navigateForward(`/list/details/${item.userId}`);
   }
   
+  formatCurrency(number){
+    return number.toLocaleString('en-IN', {
+      maximumFractionDigits: 0, 
+      minimumFractionDigits: 0,
+       style: 'currency',
+       currency: 'INR'
+   });
+   }
 }

@@ -51,7 +51,7 @@
             <fa-icon [icon]="['fas','briefcase']"></fa-icon>
             {{user?.occupation}} <ion-icon name="school"></ion-icon> {{user?.education}}
           </p>
-          <p>
+          
             <p>
               <fa-icon [icon]="['fas','map-marker']"></fa-icon>
               {{user?.distance?.kms}} kms
@@ -72,7 +72,7 @@
         </ion-button>
         <ion-button style="width: 25%;" fill="clear" (click)="openMessageBox(user)">
           <ion-icon name="chatboxes" slot="icon-only" color="medium"></ion-icon>
-          <ion-label *ngIf="user.commentsCnt >0">
+          <ion-label *ngIf="user.commentsCnt >0" style="margin-bottom: 3px;">
           ({{user.commentsCnt}})</ion-label>
         </ion-button>
         <ion-button style="width: 25%;" fill="clear" (click)="sendShare(user)">

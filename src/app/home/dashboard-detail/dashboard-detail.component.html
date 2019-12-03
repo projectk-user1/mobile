@@ -27,13 +27,13 @@
                   <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
                   {{user?.occupation}} <ion-icon name="school"></ion-icon> {{user?.education}}</p>
                 <p>
-                  <fa-icon [icon]="['fas','map-marker']" ></fa-icon>
-                  {{user?.distance?.kms}}
+                  <fa-icon [icon]="['fas','map-marker']"></fa-icon>
+                  {{user?.distance?.kms}} kms
                   <ion-icon name="wifi" slot="start"></ion-icon>
-                  {{user?.gunaCount}} / 36 
-                  
-                  <fa-icon [icon]="['fas','dollar-sign']" ></fa-icon>
-                  {{user?.salary}}
+                  {{user?.gunaCount}}/36
+    
+                  <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->
+                  {{formatCurrency(user?.salary)}}
                 </p>
               </ion-label>
             </ion-item>

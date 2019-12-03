@@ -6,6 +6,7 @@ import { MasterFieldsService } from 'src/app/services/master-fields/master-field
 import { RestService } from 'src/app/services/rest.service';
 import { AppConstants } from 'src/app/constants/config.constants';
 import { UserSession } from 'src/app/_models/UserSession';
+import { isNumber } from 'util';
 
 @Component({
   selector: 'app-detail',
@@ -170,4 +171,14 @@ export class DetailComponent implements OnInit {
       }
     })
   }
+
+  formatCurrency(number){
+    if(isNumber(number))
+    return number.toLocaleString('en-IN', {
+      maximumFractionDigits: 0, 
+      minimumFractionDigits: 0,
+       style: 'currency',
+       currency: 'INR'
+   });
+   }
 }

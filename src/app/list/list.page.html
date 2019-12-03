@@ -38,6 +38,7 @@
   -->
 <!-- </ion-content> -->
 <ion-content>
+  
   <ion-list *ngFor="let user of searchResults">
     
       <ion-item detail="true" button (click)="showProfile(user);">
@@ -46,10 +47,24 @@
         </ion-avatar>
         <ion-label>
           <h3>{{user?.userId}} - {{user?.firstname}}</h3>
-          <p>{{user?.age}} yrs, {{user?.height?.cms}} cms, {{user?.maritalstatus}}</p>
           <p>
-            <fa-icon [icon]="['fas','briefcase']"></fa-icon>
-            {{user?.occupation}} <ion-icon name="school"></ion-icon> {{user?.education}}
+            <span [style.font-style]="user?.prefMatchMap?.age ?'italic':'inherit'">
+              {{user?.age}} yrs</span>,
+            <span [style.font-style]="user?.prefMatchMap?.height ?'italic':'inherit'">
+              {{user?.height?.cms}} cms
+            </span>,
+            <span [style.font-style]="user?.prefMatchMap?.maritalStatus ?'italic':'inherit'">
+              {{user?.maritalstatus}}
+            </span>
+          </p>
+          <p>
+              <span [style.font-style]="user?.prefMatchMap?.occupation ?'italic':'inherit'">
+                  <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+                  {{user?.occupation}}
+              </span>
+              <span [style.font-style]="user?.prefMatchMap?.education ?'italic':'inherit'">
+                  <ion-icon name="school"></ion-icon> {{user?.education}}
+              </span>
           </p>
           
             <p>

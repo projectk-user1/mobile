@@ -208,7 +208,11 @@
       <ion-grid class="basic-Details">
         <ion-row>
           <ion-col>
-            {{profile.age}} yrs, {{profile.height?.cms}} cms
+            <span [style.font-style]="profile?.prefMatchMap?.age ?'italic':'inherit'">
+              {{profile?.age}} yrs</span>,
+            <span [style.font-style]="profile?.prefMatchMap?.height ?'italic':'inherit'">
+              {{profile?.height?.cms}} cms
+            </span>
           </ion-col>
           <ion-col>
             {{profile.weight}} kgs, {{profile.bmi}} BMI
@@ -216,19 +220,43 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            <fa-icon [icon]="['fas','briefcase']"></fa-icon>
-            {{profile?.occupation}} <ion-icon name="school"></ion-icon> {{profile?.education}}
+              <span [style.font-style]="profile?.prefMatchMap?.occupation ?'italic':'inherit'">
+                  <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+                  {{profile?.occupation}}
+              </span>
+              
           </ion-col>
           <ion-col>
-            {{profile.maritalstatus}}
+              
+              <span [style.font-style]="profile?.prefMatchMap?.education ?'italic':'inherit'">
+                  <ion-icon name="school"></ion-icon> {{profile?.education}}
+              </span>
           </ion-col>
+          
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                {{profile?.gender === 'M' ? 'Male': 'Female'}}
+            </ion-col>
+            <ion-col>
+                <span [style.font-style]="profile?.prefMatchMap?.maritalStatus ?'italic':'inherit'">
+                    {{profile?.maritalstatus}}
+                  </span>
+            </ion-col>
         </ion-row>
         <ion-row>
           <ion-col>
-            {{profile.religion}}, {{profile.caste}}
+            {{profile.religion}}, 
+            <span [style.font-style]="profile?.prefMatchMap?.caste ?'italic':'inherit'">
+                {{profile?.caste}}
+              </span>
           </ion-col>
           <ion-col>
-            {{profile.star}} / {{profile.rasi}}
+            <span [style.font-style]="profile?.prefMatchMap?.star ?'italic':'inherit'">
+              {{profile?.star}}
+            </span> / <span [style.font-style]="profile?.prefMatchMap?.rasi ?'italic':'inherit'">
+              {{profile?.rasi}}
+            </span>
           </ion-col>
         </ion-row>
         <ion-row>
@@ -241,11 +269,14 @@
         </ion-row>
         <ion-row>
           <ion-col>
-            {{profile.complexion}}
+              <span [style.font-style]="profile?.prefMatchMap?.complexion ?'italic':'inherit'">
+                  {{profile?.complexion}}
+                </span>
           </ion-col>
           <ion-col>
-            <fa-icon [icon]="['fas','dollar-sign']"></fa-icon>
-            {{profile?.salary}}
+            <!-- <fa-icon [icon]="['fas','dollar-sign']"></fa-icon>
+            {{profile?.salary}} -->
+            {{formatCurrency(profile?.salary)}}
           </ion-col>
         </ion-row>
         <ion-row style="border-top: 1px solid #c1c4cd; margin-top:10px">

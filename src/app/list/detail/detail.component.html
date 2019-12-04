@@ -9,18 +9,18 @@
         <ion-icon name="share" slot="icon-only"></ion-icon>
       </ion-button>
       <ion-button fill="clear" (click)="updateFavouriteEvent(profile)">
-          <ion-icon name="heart" slot="icon-only" [color]="profile.favorite"></ion-icon>
+        <ion-icon name="heart" slot="icon-only" [color]="profile.favorite"></ion-icon>
       </ion-button>
       <ion-button fill="clear" (click)="updateLikeEvent(profile)">
-          <ion-icon name="thumbs-up" slot="icon-only" [color]="profile.likeColor"></ion-icon>
+        <ion-icon name="thumbs-up" slot="icon-only" [color]="profile.likeColor"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding ">
-  
-  <img [src]="profile.photoLink"  />
-  
+
+  <img [src]="profile.photoLink" fullscreen class="center"/>
+
   <ion-grid class="basic-Details">
     <ion-row>
       <ion-col style="text-align: center; font-size: 18px;">
@@ -191,21 +191,189 @@
       </ion-grid>
     </div>
     <div *ngSwitchCase="'history'">
-        <div *ngFor="let event of profile.eventLogs">
-            <ion-item>
-              <ion-icon slot="end" color="medium" name="thumbs-up" *ngIf="event.eventType==1"></ion-icon>
-              <ion-icon slot="end" color="medium" name="text" *ngIf="event.eventType==2"></ion-icon>
-              <ion-icon slot="end" color="medium" name="heart" *ngIf="event.eventType==3"></ion-icon>
-              <ion-label class="timeline-label ion-text-wrap">
-                <!-- <p>{{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}</p> -->
-                <p *ngIf="event?.message">{{event?.message}}</p>
-                <p>{{event?.recCrtTs}} </p>
-              </ion-label>
-            </ion-item>
-          </div>
+      <div *ngFor="let event of profile.eventLogs">
+        <ion-item>
+          <ion-icon slot="end" color="medium" name="thumbs-up" *ngIf="event.eventType==1"></ion-icon>
+          <ion-icon slot="end" color="medium" name="text" *ngIf="event.eventType==2"></ion-icon>
+          <ion-icon slot="end" color="medium" name="heart" *ngIf="event.eventType==3"></ion-icon>
+          <ion-label class="timeline-label ion-text-wrap">
+            <!-- <p>{{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}</p> -->
+            <p *ngIf="event?.message">{{event?.message}}</p>
+            <p>{{event?.recCrtTs}} </p>
+          </ion-label>
+        </ion-item>
+      </div>
     </div>
     <div *ngSwitchDefault>
-      <ion-grid class="basic-Details">
+      <h2> Personal Information </h2>
+      <ion-list >
+        <ion-item>
+          <ion-icon slot="start" name="create"></ion-icon>
+          <ion-label>About Profile</ion-label>
+        </ion-item>
+        <ion-item style="font-size: 14px;">
+          {{profile.aboutSelf}}
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="list-box"></ion-icon>
+          <ion-label>Basic Details</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Name </ion-label>
+          <ion-label slot="end" class="ion-text-wrap" style="font-size: 14px;">
+            {{profile.firstname}} {{profile.lastname}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Gender </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.gender === 'M' ? 'Male': 'Female'}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Age </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.age}} yrs
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.age></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Height </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+
+            {{profile?.height?.cms}} cms
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.height></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> weight </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile.weight}} kgs, {{profile.bmi}} BMI</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Marital Status </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.maritalstatus}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.maritalStatus></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Complexion </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.complexion}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.complexion></ion-icon>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="planet"></ion-icon>
+          <ion-label>Religious Information</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Religion </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile.religion}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Caste </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.caste}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.caste></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Paternal Gotram </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.paternalGotram}}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Maternal Gotram </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.maternalGotram}}
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Raasi </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+              <ion-icon slot="start" [src]="'../assets/icon/'+profile?.rasi+'.svg'" ></ion-icon>
+            {{profile?.rasi}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.rasi></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Star </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile?.star}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.star></ion-icon>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="school"></ion-icon>
+          <ion-label>Professional Information</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Education </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            <ion-icon name="school"></ion-icon> {{profile?.education}}
+            <ion-icon name="bulb" slot="end" *ngIf=profile?.prefMatchMap?.education></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Occupation </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+            {{profile?.occupation}}
+            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.occupation></ion-icon>
+          </ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Salary </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{formatCurrency(profile?.salary)}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="people"></ion-icon>
+          <ion-label>Family Details</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Family Status </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile.familyStatus}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Family Type </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile.familyType}}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Family Values </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+            {{profile.familyValues}}</ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="attach"></ion-icon>
+          <ion-label>Tag Details</ion-label>
+        </ion-item>
+      </ion-list>
+      
+          <p>
+          <ion-chip outline color="primary" style="pointer-events: none;" *ngFor="let tag of profile.tags">
+            <ion-label> {{tag}}</ion-label>
+          </ion-chip>
+        </p>
+       
+        
+      
+      <!-- <ion-grid class="basic-Details">
         <ion-row>
           <ion-col>
             <span [style.font-style]="profile?.prefMatchMap?.age ?'italic':'inherit'">
@@ -219,22 +387,6 @@
           </ion-col>
         </ion-row>
         <ion-row>
-          <ion-col>
-              <span [style.font-style]="profile?.prefMatchMap?.occupation ?'italic':'inherit'">
-                  <fa-icon [icon]="['fas','briefcase']"></fa-icon>
-                  {{profile?.occupation}}
-              </span>
-              
-          </ion-col>
-          <ion-col>
-              
-              <span [style.font-style]="profile?.prefMatchMap?.education ?'italic':'inherit'">
-                  <ion-icon name="school"></ion-icon> {{profile?.education}}
-              </span>
-          </ion-col>
-          
-        </ion-row>
-        <ion-row>
             <ion-col>
                 {{profile?.gender === 'M' ? 'Male': 'Female'}}
             </ion-col>
@@ -244,6 +396,29 @@
                   </span>
             </ion-col>
         </ion-row>
+        <ion-row>
+            <ion-col>
+                <span [style.font-style]="profile?.prefMatchMap?.education ?'italic':'inherit'">
+                    <ion-icon name="school"></ion-icon> {{profile?.education}}
+                </span>
+            </ion-col>
+          <ion-col>
+              <span [style.font-style]="profile?.prefMatchMap?.occupation ?'italic':'inherit'">
+                  <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+                  {{profile?.occupation}}
+              </span>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col>
+                <span [style.font-style]="profile?.prefMatchMap?.complexion ?'italic':'inherit'">
+                    {{profile?.complexion}}
+                  </span>
+            </ion-col>
+            <ion-col>
+              {{formatCurrency(profile?.salary)}}
+            </ion-col>
+          </ion-row>
         <ion-row>
           <ion-col>
             {{profile.religion}}, 
@@ -267,30 +442,86 @@
             {{profile.familyType}}, {{profile.familyStatus}}, {{profile.familyValues}}
           </ion-col>
         </ion-row>
-        <ion-row>
-          <ion-col>
-              <span [style.font-style]="profile?.prefMatchMap?.complexion ?'italic':'inherit'">
-                  {{profile?.complexion}}
-                </span>
-          </ion-col>
-          <ion-col>
-            <!-- <fa-icon [icon]="['fas','dollar-sign']"></fa-icon>
-            {{profile?.salary}} -->
-            {{formatCurrency(profile?.salary)}}
-          </ion-col>
-        </ion-row>
+        
         <ion-row style="border-top: 1px solid #c1c4cd; margin-top:10px">
           <ion-col>
             {{profile.aboutSelf}}
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
 
-      <div *ngFor="let tag of profile.tags">
-        <ion-chip style="pointer-events: none;">
-          <ion-label> {{tag}}</ion-label>
-        </ion-chip>
-      </div>
+
+      <ion-list>
+        <ion-item>
+          <ion-icon slot="start" name="color-wand"></ion-icon>
+          <ion-label>Partner Preferences</ion-label>
+        </ion-item>
+
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Marital Status </ion-label>
+          <ion-label slot="end" class="ion-text-wrap" style="font-size: 14px;"
+            *ngIf="profile?.partnerPreference?.maritalstatus">
+            {{profile?.partnerPreference?.maritalstatusDesc}}</ion-label>
+          <ion-label slot="end" class="ion-text-wrap" style="font-size: 14px;"
+            *ngIf="!profile?.partnerPreference?.maritalstatus">
+            NA</ion-label>
+
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Caste </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap"
+            *ngIf="profile?.partnerPreference?.caste">
+            {{profile?.partnerPreference?.casteDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap"
+            *ngIf="!profile?.partnerPreference?.caste">
+            NA</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Complexion </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="profile?.partnerPreference?.complexion"
+            class="ion-text-wrap">
+            {{profile?.partnerPreference?.complexionDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="!profile?.partnerPreference?.complexion"
+            class="ion-text-wrap">
+            NA</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Education </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="profile?.partnerPreference?.education"
+            class="ion-text-wrap">
+            {{profile?.partnerPreference?.educationDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="!profile?.partnerPreference?.education"
+            class="ion-text-wrap">
+            NA</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Occupation </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="profile?.partnerPreference?.occupation"
+            class="ion-text-wrap">
+            {{profile?.partnerPreference?.occupationDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="!profile?.partnerPreference?.occupation"
+            class="ion-text-wrap">
+            NA</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Rasi </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="profile?.partnerPreference?.rasi" class="ion-text-wrap">
+            {{profile?.partnerPreference?.rasiDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="!profile?.partnerPreference?.rasi"
+            class="ion-text-wrap">
+            NA</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label style="font-size: 14px;"> Star </ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="profile?.partnerPreference?.star" class="ion-text-wrap">
+            {{profile?.partnerPreference?.starDesc}}</ion-label>
+          <ion-label slot="end" style="font-size: 14px;" *ngIf="!profile?.partnerPreference?.star"
+            class="ion-text-wrap">
+            NA</ion-label>
+        </ion-item>
+      </ion-list>
+
+
     </div>
     <!-- <div *ngSwitchCase="'stats'">
       statss

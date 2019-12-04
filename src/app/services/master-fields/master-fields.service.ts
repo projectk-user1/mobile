@@ -112,6 +112,53 @@ export class MasterFieldsService {
     obj.images.push({ src: 'data:image/png;base64,' + obj.qr,type:'image' });
     obj.images.push({ src: obj.videoLink, type:'video' });
     obj.videoLink=this.sanitizer.bypassSecurityTrustResourceUrl(obj.videoLink);
+    if(obj.partnerPreference){
+      if(obj.partnerPreference.caste){
+       let casteDesc:any =[];
+        obj.partnerPreference.caste.split(/\s*,\s*/).forEach(element => {
+          casteDesc.push(this.casteMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.casteDesc=casteDesc;
+      }
+      if(obj.partnerPreference.complexion){
+        let complexionDesc:any =[];
+        obj.partnerPreference.complexion.split(/\s*,\s*/).forEach(element => {
+          complexionDesc.push(this.complexionMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.complexionDesc=complexionDesc;
+      }
+      if(obj.partnerPreference.education){
+        let educationDesc:any =[];
+        obj.partnerPreference.education.split(/\s*,\s*/).forEach(element => {
+          educationDesc.push(this.educationMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.educationDesc=educationDesc;
+      }
+      if(obj.partnerPreference.maritalstatus){
+        obj.partnerPreference.maritalstatusDesc=this.maritalStatusMap.get(obj.partnerPreference.maritalstatus).fieldName;
+      }
+      if(obj.partnerPreference.occupation){
+        let occupationDesc:any =[];
+        obj.partnerPreference.occupation.split(/\s*,\s*/).forEach(element => {
+          occupationDesc.push(this.occupationMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.occupationDesc=occupationDesc;
+      }
+      if(obj.partnerPreference.rasi){
+        let rasiDesc:any =[];
+        obj.partnerPreference.rasi.split(/\s*,\s*/).forEach(element => {
+          rasiDesc.push(this.rasiMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.rasiDesc=rasiDesc;
+      }
+      if(obj.partnerPreference.star){
+        let starDesc:any =[];
+        obj.partnerPreference.star.split(/\s*,\s*/).forEach(element => {
+          starDesc.push(this.starMap.get(parseInt(element)).fieldName);
+        });
+        obj.partnerPreference.starDesc=starDesc;
+      }
+    }
     return obj;
   }
 }

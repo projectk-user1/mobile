@@ -209,7 +209,7 @@
       <ion-list >
         <ion-item>
           <ion-icon slot="start" name="create"></ion-icon>
-          <ion-label>About Profile</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">About Profile</ion-label>
         </ion-item>
         <ion-item style="font-size: 14px;">
           {{profile.aboutSelf}}
@@ -218,7 +218,7 @@
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="list-box"></ion-icon>
-          <ion-label>Basic Details</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Basic Details</ion-label>
         </ion-item>
 
         <ion-item>
@@ -234,7 +234,7 @@
         <ion-item>
           <ion-label style="font-size: 14px;"> Age </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
-            {{profile?.age}} yrs
+            {{profile?.age}} yrs, {{profile?.dob | date:'dd/MMM/yyyy'}}
             <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.age></ion-icon>
           </ion-label>
         </ion-item>
@@ -269,7 +269,7 @@
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="planet"></ion-icon>
-          <ion-label>Religious Information</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Religious Information</ion-label>
         </ion-item>
         <ion-item>
           <ion-label style="font-size: 14px;"> Religion </ion-label>
@@ -310,29 +310,40 @@
             <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.star></ion-icon>
           </ion-label>
         </ion-item>
+        <ion-item>
+            <ion-label style="font-size: 14px;"> Guna Count </ion-label>
+            <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
+              {{profile?.gunaCount}}/36
+            </ion-label>
+          </ion-item>
       </ion-list>
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="school"></ion-icon>
-          <ion-label>Professional Information</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Professional Information</ion-label>
         </ion-item>
         <ion-item>
-          <ion-label style="font-size: 14px;"> Education </ion-label>
+          <ion-label style="font-size: 14px;"> 
+              <ion-icon name="school" style="margin-bottom: -1px;"></ion-icon>
+            Education </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
-            <ion-icon name="school"></ion-icon> {{profile?.education}}
+             {{profile?.education}}
             <ion-icon name="bulb" slot="end" *ngIf=profile?.prefMatchMap?.education></ion-icon>
           </ion-label>
         </ion-item>
         <ion-item>
-          <ion-label style="font-size: 14px;"> Occupation </ion-label>
+          <ion-label style="font-size: 14px;"> 
+              <ion-icon name="briefcase" style="margin-bottom: -1px;"></ion-icon>
+            Occupation </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
-            <fa-icon [icon]="['fas','briefcase']"></fa-icon>
             {{profile?.occupation}}
             <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.occupation></ion-icon>
           </ion-label>
         </ion-item>
         <ion-item>
-          <ion-label style="font-size: 14px;"> Salary </ion-label>
+          <ion-label style="font-size: 14px;">
+              <fa-icon [icon]="['fas','rupee-sign']"></fa-icon>
+            Annual Income </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
             {{formatCurrency(profile?.salary)}}</ion-label>
         </ion-item>
@@ -340,7 +351,7 @@
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="people"></ion-icon>
-          <ion-label>Family Details</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Family Details</ion-label>
         </ion-item>
         <ion-item>
           <ion-label style="font-size: 14px;"> Family Status </ion-label>
@@ -361,7 +372,7 @@
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="attach"></ion-icon>
-          <ion-label>Tag Details</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Tag Details</ion-label>
         </ion-item>
       </ion-list>
       
@@ -454,7 +465,7 @@
       <ion-list>
         <ion-item>
           <ion-icon slot="start" name="color-wand"></ion-icon>
-          <ion-label>Partner Preferences</ion-label>
+          <ion-label style="font-size: 20px;font-weight: bold;">Partner Preferences</ion-label>
         </ion-item>
 
         <ion-item>

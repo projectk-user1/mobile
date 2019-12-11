@@ -7,6 +7,7 @@ import { RestService } from 'src/app/services/rest.service';
 import { AppConstants } from 'src/app/constants/config.constants';
 import { UserSession } from 'src/app/_models/UserSession';
 import { isNumber } from 'util';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-detail',
@@ -15,9 +16,12 @@ import { isNumber } from 'util';
 })
 export class DetailComponent implements OnInit {
 
-  constructor(public navCtrl: NavController, private route: ActivatedRoute, private socialSharing: SocialSharing,
+  constructor(public navCtrl: NavController, 
+    private route: ActivatedRoute, 
+    private socialSharing: SocialSharing,
     private _restService: RestService,
-    private masterFieldsService: MasterFieldsService) { }
+    private masterFieldsService: MasterFieldsService,
+    public loading: LoadingService) { }
 
   item: any;
   sub: any;
@@ -27,7 +31,6 @@ export class DetailComponent implements OnInit {
   gunaMatchResults: any;
   loggedInUser: any;
   ngOnInit() {
-
     //   this.route.queryParams.subscribe(params => {
 
     //     this.item = JSON.parse(params["item"]);
@@ -42,11 +45,13 @@ export class DetailComponent implements OnInit {
   }
 
   fetchProfile(profileId){
+    this.loading.present();
     this.profile={};
     this._restService.httpGetServiceCall(AppConstants.searchByIdEndPoint + "/" + profileId).subscribe((res: any) => {
       if (res != null) {
         let response = this.parseSearchResults(res)
         this.profile=response;
+        this.loading.dismiss();
         this.profile.sharableLink='https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ'
       } else {
         
@@ -90,6 +95,7 @@ export class DetailComponent implements OnInit {
         if (typeof this.loggedInUser === 'undefined') {
           this.loggedInUser='';
       }
+      this.loading.present();
         this._restService.httpGetServiceCall(AppConstants.gunaCountForProfile + "?loggedInProfileId=" + this.loggedInUser + "&selectedProfile=" + this.profileId).subscribe((result) => {
           this.gunaMatchResults = result;
           console.log(result);
@@ -97,6 +103,7 @@ export class DetailComponent implements OnInit {
           this.gunaMatchResults.groomStar = this.masterFieldsService.starMap.get(this.gunaMatchResults.groomStar).fieldName;
           this.gunaMatchResults.groomRasi = this.masterFieldsService.rasiMap.get(this.gunaMatchResults.groomRasi).fieldName;
           this.gunaMatchResults.brideRasi = this.masterFieldsService.rasiMap.get(this.gunaMatchResults.brideRasi).fieldName;
+          this.loading.dismiss();
         })
       }
     }
@@ -108,6 +115,7 @@ export class DetailComponent implements OnInit {
     return this.masterFieldsService.parseSearchResults(obj);
   }
   updateFavouriteEvent(userInfo: any) {
+    this.loading.present();
     console.log('on Update Event' + userInfo);
     let eventModeUrl = "/create";
     let postObj:any = {};
@@ -140,9 +148,11 @@ export class DetailComponent implements OnInit {
         eventLog.eventType = 3;
         userInfo.eventLogs.push(eventLog);
       }
+      this.loading.dismiss();
     })
   }
   updateLikeEvent(userInfo: any) {
+    this.loading.present();
     console.log('on Update Event' + userInfo);
     let eventModeUrl = "/create";
     let postObj:any = {};
@@ -169,6 +179,7 @@ export class DetailComponent implements OnInit {
         eventLog.eventType = 1;
         userInfo.eventLogs.push(eventLog);
       }
+      this.loading.dismiss();
     })
   }
 

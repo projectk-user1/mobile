@@ -11,6 +11,7 @@ import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { UserSession } from '../_models/UserSession';
 import { CommentComponent } from './comment/comment.component';
 import { ToastService } from '../services/toast.service';
+import { LoadingService } from '../services/loading.service';
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -50,7 +51,8 @@ export class ListPage implements OnInit {
               private masterFieldsService: MasterFieldsService,
               private socialSharing: SocialSharing,
               public popoverController: PopoverController,
-              public toastService: ToastService) {
+              public toastService: ToastService,
+              public loading: LoadingService) {
     
   }
   ionViewWillEnter() {
@@ -69,16 +71,17 @@ export class ListPage implements OnInit {
     }
     this.postObj = {};
     this.commonService.filterValueChanged.subscribe(res => {
+      this.loading.present();
       console.log(res);
       this.postObj = res;
       this.search();
     },
       errror => {
         console.warn("something went wrong", errror);
+        this.loading.dismiss();
       })
     this.commonService.commentApplied.subscribe(res => {
       console.log(res);
-
       this.updateCommentEvent(res);
     },
       errror => {
@@ -119,6 +122,7 @@ export class ListPage implements OnInit {
   //   this.navCtrl.navigateForward(`/list/details/${item.profileId}`);
   // }
   search() {
+    this.loading.present();
     this.searchResults = [];
     this.postObj.pageSize = this.resultsSize;
     this.resultsFrom = 0;
@@ -137,6 +141,7 @@ export class ListPage implements OnInit {
       this.resultsFrom = this.resultsFrom + this.resultsSize;
       result.forEach((obj) => {
         this.parseSearchResults(obj);
+        this.loading.dismiss();
       })
       this.searchResults = this.searchResults.concat(result);
     })
@@ -150,8 +155,6 @@ export class ListPage implements OnInit {
     setTimeout(() => {
       console.log('Done');
       event.target.complete();
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
       if (this.resultsFrom < this.searchResultsCnt) {
         this.loadData();
       }else{
@@ -173,6 +176,7 @@ export class ListPage implements OnInit {
    }
 
    updateFavouriteEvent(userInfo: any) {
+    this.loading.present();
     console.log('on Update Event' + userInfo);
     let eventModeUrl = "/create";
     this.postObj = {};
@@ -205,9 +209,11 @@ export class ListPage implements OnInit {
         eventLog.eventType = 3;
         userInfo.eventLogs.push(eventLog);
       }
+      this.loading.dismiss();
     })
   }
   updateLikeEvent(userInfo: any) {
+    this.loading.present();
     console.log('on Update Event' + userInfo);
     let eventModeUrl = "/create";
     this.postObj = {};
@@ -235,6 +241,7 @@ export class ListPage implements OnInit {
         userInfo.eventLogs.push(eventLog);
       }
     })
+    this.loading.dismiss();
   }
   selectedUser:any;
   async openMessageBox(ev: any) {

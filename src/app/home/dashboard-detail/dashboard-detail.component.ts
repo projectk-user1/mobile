@@ -5,6 +5,7 @@ import { NavController } from '@ionic/angular';
 import { RestService } from 'src/app/services/rest.service';
 import { UserDashboardDetails } from 'src/app/_models/user/user-dashboard';
 import { MasterFieldsService } from 'src/app/services/master-fields/master-fields.service';
+import { LoadingService } from 'src/app/services/loading.service';
 
 @Component({
   selector: 'app-dashboard-detail',
@@ -35,10 +36,12 @@ export class DashboardDetailComponent implements OnInit {
     private router: Router,
     private _restService: RestService, 
     private masterFieldsService: MasterFieldsService,
-    public navCtrl: NavController
+    public navCtrl: NavController,
+    public loading: LoadingService
   ) { }
 
   ngOnInit() {
+    this.loading.present();
     if (!this.masterFieldsService.userPrefs) {
       this._restService.httpGetServiceCall(AppConstants.mstrFieldsEndPoint).subscribe((res: any) => {
         this.masterFieldsService.createMstrFieldMap(res);
@@ -57,6 +60,7 @@ export class DashboardDetailComponent implements OnInit {
        this.events[event].data.forEach((obj) => {
         obj=this.parseSearchResults(obj);
       })
+      this.loading.dismiss();
       });
     });
   }

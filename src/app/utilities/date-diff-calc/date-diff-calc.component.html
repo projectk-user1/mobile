@@ -1,3 +1,49 @@
-<p>
-  date-diff-calc works!
-</p>
+<ion-header translucent>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToList();"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 16px;">Date </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding ">
+  <form [formGroup]="calculatorForm">
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+      <ion-item>
+        <ion-label >From date <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="fromDate" (ionChange)='calculate()'>
+        </ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label >To date <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-datetime displayFormat="DD/MM/YYYY" formControlName="toDate" (ionChange)='calculate()'>
+        </ion-datetime>
+      </ion-item>
+    </ion-list>
+
+
+  
+        <ion-list lines="full" *ngIf="dateDiff">
+            <ion-list-header>
+                Date Difference
+              </ion-list-header>
+            <ion-item>
+              <ion-label >Years </ion-label>
+              <ion-text slot="end" color="primary">{{dateDiff?.years}}</ion-text>
+            </ion-item>
+            <ion-item>
+                <ion-label >Months </ion-label>
+                <ion-text slot="end" color="primary">{{dateDiff?.months}}</ion-text>
+            </ion-item>
+            <ion-item>
+                <ion-label >Days </ion-label>
+                <ion-text slot="end" color="primary">{{dateDiff?.days}}</ion-text>
+            </ion-item>
+          </ion-list>
+      
+    
+ 
+  </form>
+</ion-content>

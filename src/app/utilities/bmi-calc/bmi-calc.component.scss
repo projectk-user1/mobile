@@ -1,0 +1,39 @@
+.bmi-color{
+    position: relative;
+ &::before{
+     position: absolute;
+     left:-14px;
+     top:4px;
+    // background: red;
+     width: 10px;
+     height: 10px;
+     content: ''
+}
+}
+.red{
+    &::before{
+        background: red;
+    }
+}
+.green{
+    &::before{
+        background: green;
+    }
+}
+.blue{
+    &::before{
+        background: blue;
+    }
+}
+.red-lyt{
+    &::before{
+        background: rgba(255, 0, 0, 0.5);
+    }
+}
+.bmi-result{
+    // border: 1px solid;
+    // padding: 5px;
+    // margin-top: 7px;
+    // margin-left: 7px;
+    text-align: center;
+}

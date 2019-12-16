@@ -28,6 +28,11 @@ export class AppComponent implements OnInit{
       icon: 'person'
     },
     {
+      title: 'Utilities',
+      url: '/utilities',
+      icon: 'build'
+    },
+    {
       title: 'Contact Us',
       url: '/contact-us',
       icon: 'contact'

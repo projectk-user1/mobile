@@ -18,7 +18,8 @@ const routes: Routes = [
   { path: 'login', loadChildren:() => import('./login/login.module').then(m => m.LoginPageModule) },
   { path: 'myProfile', loadChildren:()=> import('./my-profile/my-profile.module').then(m=> m.MyProfilePageModule),canActivate: [AuthGuardService] },
   { path: 'contact-us', loadChildren: './contact-us/contact-us.module#ContactUsPageModule' },
-  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' }
+  { path: 'settings', loadChildren: './settings/settings.module#SettingsPageModule' },
+  { path: 'utilities', loadChildren: './utilities/utilities.module#UtilitiesPageModule' }
 ];
 
 @NgModule({

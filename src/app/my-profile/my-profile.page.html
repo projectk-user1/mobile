@@ -111,7 +111,7 @@
       
       <ion-item>
         <ion-label position="floating">Rasi <ion-text color="danger">*</ion-text></ion-label>
-        <ion-select placeholder="Select One" formControlName="rasi">
+        <ion-select placeholder="Select One" formControlName="rasi" (ionChange)="editProfileRasiChange($event)">
             <ion-select-option *ngFor="let rasi of userPrefs.RASI"
             [value]="rasi.fieldValue">{{rasi.fieldName}}</ion-select-option>
         </ion-select>
@@ -119,7 +119,7 @@
       <ion-item>
         <ion-label position="floating">Star <ion-text color="danger">*</ion-text></ion-label>
         <ion-select placeholder="Select One" formControlName="star">
-            <ion-select-option *ngFor="let star of userPrefs.STAR"
+            <ion-select-option *ngFor="let star of editProfileStarArr"
             [value]="star.fieldValue">{{star.fieldName}}</ion-select-option>
         </ion-select>
       </ion-item>

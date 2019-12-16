@@ -6,12 +6,20 @@
     <ion-title>
       List
     </ion-title>
-    <ion-buttons slot="end">
+    <!-- <ion-buttons slot="end">
         <ion-button fill="clear" (click)="navigateTofilter()">
           <ion-icon name="funnel" slot="icon-only"></ion-icon>
+          <sup>5</sup>
+          
         </ion-button>
-      </ion-buttons>
-    
+      </ion-buttons> -->
+      <ion-buttons slot="end">
+        <ion-tab-button (click)="navigateTofilter()">
+            <ion-icon name="funnel" style="margin-right: 1em;"></ion-icon>
+            <ion-label style="margin-right: 2em;">Filter</ion-label>
+            <ion-badge color="primary">{{filterCnt}}</ion-badge>
+        </ion-tab-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -68,9 +76,10 @@
           </p>
           
             <p>
-              <fa-icon [icon]="['fas','map-marker']"></fa-icon>
+              
+              <ion-icon slot="start" name="pin"></ion-icon>
               {{user?.distance?.kms}} kms
-              <ion-icon name="wifi" slot="start"></ion-icon>
+              <ion-icon slot="start" name="planet"></ion-icon>
               {{user?.gunaCount}}/36
 
               <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->

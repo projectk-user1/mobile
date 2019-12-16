@@ -12,6 +12,7 @@ import { UserSession } from '../_models/UserSession';
 import { CommentComponent } from './comment/comment.component';
 import { ToastService } from '../services/toast.service';
 import { LoadingService } from '../services/loading.service';
+import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-list',
   templateUrl: 'list.page.html',
@@ -43,7 +44,10 @@ export class ListPage implements OnInit {
     TAG: [],
     MSGTMPLT:[]
   };
-    
+  filterCnt:any = 0;
+  // filterValueChangedSubscription: Subscription;
+  commentAppliedSubscription: Subscription;
+
   constructor(public navCtrl: NavController,
               private route: ActivatedRoute,
               private commonService:CommonService,
@@ -69,36 +73,35 @@ export class ListPage implements OnInit {
 
       });
     }
-    this.postObj = {};
-    this.commonService.filterValueChanged.subscribe(res => {
-      this.loading.present();
-      console.log(res);
-      this.postObj = res;
-      this.search();
-    },
-      errror => {
-        console.warn("something went wrong", errror);
-        this.loading.dismiss();
-      })
-    this.commonService.commentApplied.subscribe(res => {
+    this.postObj = Object.assign({},this.commonService.getFilter()) || {};
+    // this.filterCnt = Object.entries(this.postObj).length ;
+    this.checkNoOfFiltersApplied(this.postObj);
+    this.search();
+    
+    this.commentAppliedSubscription = this.commonService.commentApplied.subscribe(res => {
       console.log(res);
       this.updateCommentEvent(res);
     },
       errror => {
         console.warn("something went wrong", errror);
       })
-    this.search();
+    
   }
   ngOnInit() {
     
   }
-
+  ngOnDestroy() {
+    this.commonService.setFilter({});
+    // this.filterValueChangedSubscription.unsubscribe();
+    this.commentAppliedSubscription.unsubscribe();
+}
   
   showProfile(item:any){
     this.navCtrl.navigateForward(`/list/details/${item.userId}`);
   }
 
   navigateTofilter(){
+    
     this.navCtrl.navigateForward(`/list/filter`);
   }
   
@@ -131,6 +134,36 @@ export class ListPage implements OnInit {
       this.searchResultsCnt = result;
     })
     this.loadData();
+  }
+
+  checkNoOfFiltersApplied(postObj:any){
+    let filterCnt=0;
+    if(postObj.gender){
+      filterCnt=filterCnt+1;
+    }if(postObj.ageFrom && postObj.ageTo){
+      filterCnt=filterCnt+1;
+    } if(postObj.heightFrom && postObj.heightTo){
+      filterCnt=filterCnt+1;
+    } if(postObj.education){
+      filterCnt=filterCnt+1;
+    } if(postObj.maritalstatus){
+      filterCnt=filterCnt+1;
+    } if(postObj.salaryFrom){
+      filterCnt=filterCnt+1;
+    } if(postObj.caste){
+      filterCnt=filterCnt+1;
+    } if(postObj.religion){
+      filterCnt=filterCnt+1;
+    } if(postObj.familyStatus){
+      filterCnt=filterCnt+1;
+    } if(postObj.familyType){
+      filterCnt=filterCnt+1;
+    } if(postObj.familyValues){
+      filterCnt=filterCnt+1;
+    } if(postObj.distance){
+      filterCnt=filterCnt+1;
+    }
+    this.filterCnt=filterCnt;
   }
 
   loadData() {

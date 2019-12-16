@@ -7,10 +7,15 @@ import { Subject } from 'rxjs';
 export class CommonService {
 
   constructor() { }
-  filterValueChanged: Subject<any> = new Subject<any>();
+  // filterValueChanged: Subject<any> = new Subject<any>();
   commentApplied: Subject<any> = new Subject<any>();
+  private filterObj: any = {};
   setFilter(obj:any){
-    this.filterValueChanged.next(obj);
+    this.filterObj=obj;
+    // this.filterValueChanged.next(obj);
+  }
+  getFilter(){
+    return this.filterObj;
   }
   saveSelectedComment(obj:any){
     this.commentApplied.next(obj);

@@ -161,4 +161,11 @@ export class MyProfilePage implements OnInit {
       console.log(result);
     })
   }
+  editProfileRasiChange($event: any) {
+    let _rasiStarVal=this.rasiStarMap[$event.detail.value];
+    this.editProfileStarArr=[];
+    _rasiStarVal.forEach(element => {
+      this.editProfileStarArr.push(this.masterFieldsService.starMap.get(element));  
+    });
+  }
 }

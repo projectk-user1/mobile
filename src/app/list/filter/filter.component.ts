@@ -46,8 +46,12 @@ export class FilterComponent implements OnInit {
     MSGTMPLT:[]
   };
   ngOnInit() {
-    this.selectedAgeRange={ lower: 19, upper: 45 };
-    this.selectedHeightRange={ lower: 101, upper: 170 };
+    if (Object.entries(this.commonService.getFilter()).length >0) {
+      this.assignFilterValues();
+    } else {
+      this.selectedAgeRange = { lower: 19, upper: 45 };
+      this.selectedHeightRange = { lower: 101, upper: 170 };
+    }
     if (this.masterFieldsService.userPrefs) {
       this.userPrefs = this.masterFieldsService.userPrefs;
       this.masterFieldsService.createMstrFieldMap(this.userPrefs);
@@ -61,7 +65,25 @@ export class FilterComponent implements OnInit {
       });
     }
   }
-
+  assignFilterValues(){
+    let postObj:any = this.commonService.getFilter();
+    this.selectedGender=postObj.gender;
+    this.selectedAgeRange={};
+    this.selectedHeightRange={};
+    this.selectedAgeRange.lower=postObj.ageFrom;
+    this.selectedAgeRange.upper=postObj.ageTo;
+    this.selectedHeightRange.lower=postObj.heightFrom;
+    this.selectedHeightRange.upper=postObj.heightTo;
+    this.selectedEducation=postObj.education;
+    this.selectedMaritalStatus=postObj.maritalstatus;
+    this.selectedMinSalary=postObj.salaryFrom;
+    this.selectedCaste=postObj.caste;
+    this.selectedReligion=postObj.religion;
+    this.selectedFamilyStatus=postObj.familyStatus;
+    this.selectedFamilyType=postObj.familyType;
+    this.selectedFamilyValues=postObj.familyValues;
+    this.selectedMaxDistance=postObj.distance;
+  }
   backToList(){
     this.navCtrl.back()
   }
@@ -85,19 +107,20 @@ export class FilterComponent implements OnInit {
     postObj.familyValues=this.selectedFamilyValues;
     postObj.distance=this.selectedMaxDistance;
     this.commonService.setFilter(postObj);
-    this.navCtrl.back()
+    // this.navCtrl.back()
+    this.navCtrl.navigateForward(`/list`);
   }
   clearFilters(){
-  this.selectedGender='';
-  this.selectedMaritalStatus='';
-  this.selectedEducation='';
-  this.selectedCaste='';
-  this.selectedReligion='';
-  this.selectedFamilyStatus='';
-  this.selectedFamilyType='';
-  this.selectedFamilyValues='';
-  this.selectedMinSalary='';
-  this.selectedMaxDistance='';
+  this.selectedGender= null;
+  this.selectedMaritalStatus=null;
+  this.selectedEducation=null;
+  this.selectedCaste=null;
+  this.selectedReligion=null;
+  this.selectedFamilyStatus=null;
+  this.selectedFamilyType=null;
+  this.selectedFamilyValues=null;
+  this.selectedMinSalary=null;
+  this.selectedMaxDistance=null;
   this.selectedAgeRange={ lower: 19, upper: 45 };
     this.selectedHeightRange={ lower: 101, upper: 170 };
   }

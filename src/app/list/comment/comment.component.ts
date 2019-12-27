@@ -4,7 +4,7 @@ import { MasterFieldsService } from 'src/app/services/master-fields/master-field
 import { IUserPrefs } from 'src/app/_models/user';
 import { RestService } from 'src/app/services/rest.service';
 import { AppConstants } from 'src/app/constants/config.constants';
-import { PopoverController } from '@ionic/angular';
+import { PopoverController, ModalController } from '@ionic/angular';
 
 @Component({
   selector: 'app-comment',
@@ -16,7 +16,8 @@ export class CommentComponent implements OnInit {
   constructor(private commonService: CommonService,
               private _restService: RestService,
               private masterFieldsService: MasterFieldsService,
-              private popoverController: PopoverController) { }
+              private popoverController: PopoverController,
+              public modalController: ModalController) { }
   selectedMsgTmplt:any;
   userPrefs: IUserPrefs = {
     CASTE: [],
@@ -55,7 +56,7 @@ export class CommentComponent implements OnInit {
   }
   async close() {
     try {
-        await this.popoverController.dismiss();
+        await this.modalController.dismiss();
     } catch (e) {
         //click more than one time popover throws error, so ignore...
     }

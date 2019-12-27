@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Search By Id
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen class="ion-padding ">
+  <ion-list>
+    <!-- <ion-item-group>
+      <ion-item-divider>
+        <ion-icon slot="end" name="search" size="large"></ion-icon>
+        <ion-label style="font-size: 20px;font-weight: bold;">Search By Id</ion-label>
+      </ion-item-divider> -->
+      <ion-item>
+        <ion-label position="floating" >Profile Id <ion-text color="danger">*</ion-text></ion-label>
+        <ion-input required type="text" [(ngModel)]="profileId" (keyup.enter)="search()"></ion-input>
+        <ion-icon name="search" slot="end" class="ion-align-self-center" (click)="search();"></ion-icon>
+      </ion-item>
+    <!-- </ion-item-group> -->
+  </ion-list>
+  
+
+  <ion-item detail="true" button (click)="showProfile(profile);" *ngIf="profile">
+    <ion-avatar slot="start">
+      <img [src]="profile?.photoLink">
+    </ion-avatar>
+    <ion-label>
+      <h3>{{profile?.userId}} - {{profile?.firstname}}</h3>
+      <p>
+        <span [style.font-style]="profile?.prefMatchMap?.age ?'italic':'inherit'">
+          {{profile?.age}} yrs</span>,
+        <span [style.font-style]="profile?.prefMatchMap?.height ?'italic':'inherit'">
+          {{profile?.height?.cms}} cms
+        </span>,
+        <span [style.font-style]="profile?.prefMatchMap?.maritalStatus ?'italic':'inherit'">
+          {{profile?.maritalstatus}}
+        </span>
+      </p>
+      <p>
+          <span [style.font-style]="profile?.prefMatchMap?.occupation ?'italic':'inherit'">
+              <fa-icon [icon]="['fas','briefcase']"></fa-icon>
+              {{profile?.occupation}}
+          </span>
+          <span [style.font-style]="profile?.prefMatchMap?.education ?'italic':'inherit'">
+              <ion-icon name="school"></ion-icon> {{profile?.education}}
+          </span>
+      </p>
+      
+        <p>
+          
+          <ion-icon slot="start" name="pin"></ion-icon>
+          {{profile?.distance?.kms}} kms
+          <ion-icon slot="start" name="planet"></ion-icon>
+          {{profile?.gunaCount}}/36
+
+          <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->
+          {{formatCurrency(profile?.salary)}}
+        </p>
+    </ion-label>
+  </ion-item>
+  
+
+</ion-content>

@@ -15,9 +15,9 @@ export const EventConfig = {
     },
     FAV: {
         id: 3,
-        icon: 'heart',
+        icon: 'star',
         color: '#dd4b39',
         key: 'FAV',
-        title: 'Favorites'
+        title: 'Short Listed'
     }
 }

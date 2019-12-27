@@ -11,7 +11,7 @@
   <ion-list>
       <div  *ngFor="let event of eventsAsArray">
           <ion-item>
-              <ion-icon slot="end" [name]="eventType?.icon"></ion-icon>
+              <ion-icon slot="end" [name]="eventType?.icon" color="primary"></ion-icon>
               <ion-label>{{eventType.title}} {{events[event].text}} ({{events[event].data.length}})</ion-label>
             </ion-item>
           
@@ -29,7 +29,7 @@
                 <p>
                   <fa-icon [icon]="['fas','map-marker']"></fa-icon>
                   {{user?.distance?.kms}} kms
-                  <ion-icon name="wifi" slot="start"></ion-icon>
+                  <ion-icon name="planet" slot="start"></ion-icon>
                   {{user?.gunaCount}}/36
     
                   <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->

@@ -18,8 +18,13 @@ export class AppComponent implements OnInit{
       icon: 'home'
     },
     {
-      title: 'Explore',
+      title: 'Profiles',
       url: '/list',
+      icon: 'contacts'
+    },
+    {
+      title: 'Search By Id',
+      url: '/search',
       icon: 'search'
     },
     {

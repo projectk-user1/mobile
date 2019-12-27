@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, PopoverController, ToastController } from '@ionic/angular';
+import { NavController, PopoverController, ToastController, ModalController } from '@ionic/angular';
 import { DetailComponent } from './detail/detail.component';
 import { NavigationExtras, Router, ActivatedRoute } from '@angular/router';
 import { CommonService } from '../common-service.service';
@@ -54,7 +54,8 @@ export class ListPage implements OnInit {
               private _restService: RestService, 
               private masterFieldsService: MasterFieldsService,
               private socialSharing: SocialSharing,
-              public popoverController: PopoverController,
+              // public popoverController: PopoverController,
+              public modalController: ModalController,
               public toastService: ToastService,
               public loading: LoadingService) {
     
@@ -280,14 +281,18 @@ export class ListPage implements OnInit {
   async openMessageBox(ev: any) {
     console.log(ev);
     this.selectedUser=ev;
-    const popover = await this.popoverController.create({
-        component: CommentComponent,
-        event: ev,
-        animated: true,
-        showBackdrop: true,
-        cssClass: 'pop-over-style'
+    // const popover = await this.popoverController.create({
+    //     component: CommentComponent,
+    //     event: ev,
+    //     animated: true,
+    //     showBackdrop: true,
+    //     cssClass: 'pop-over-style'
+    // });
+    // return await popover.present();
+    const modal = await this.modalController.create({
+      component: CommentComponent
     });
-    return await popover.present();
+    return await modal.present();
 }
 
 updateCommentEvent(selctedMsgTmplt:any){
@@ -302,12 +307,18 @@ updateCommentEvent(selctedMsgTmplt:any){
   console.log(this.selectedUser.eventLogs);
   this._restService.httpPostCall('/events' + eventModeUrl, this.postObj).subscribe((result) => {
     console.log(result);
+    let eventLog: any = {};
+    eventLog.id = result;
+    eventLog.clntId = this.selectedUser.clientId;
+    eventLog.eventType = 2;
+    this.selectedUser.eventLogs.push(eventLog);
+    this.selectedUser.commentsCnt=this.selectedUser.commentsCnt+1;
     this.toastService.presentToast('Message Sent Successfully');
   })
   
 }
-async dismissPopover() {
-  await this.popoverController.dismiss();
-}
+// async dismissPopover() {
+//   await this.popoverController.dismiss();
+// }
 
 }

@@ -28,17 +28,19 @@ export class LoginPage implements OnInit {
   }
 
   public login() {
+    // alert('login');
     localStorage.removeItem('host');
     localStorage.removeItem('useMock');
-    if(this.signInForm.get('host').value){
+    if(this.signInForm.get('host') && this.signInForm.get('host').value){
       localStorage.setItem('host', this.signInForm.get('host').value);
     }
-    if(this.signInForm.get('useMock').value){
+    if(this.signInForm.get('useMock') && this.signInForm.get('useMock').value){
       localStorage.setItem('useMock', this.signInForm.get('useMock').value);
     }
     
     if (this.signInForm.valid) {
       this.loading = true;
+      // alert('Form Valid');
       this._restService.httpPostCall(AppConstants.loginEndPoint, this.signInForm.value).subscribe(
         (data: any) => {
           this.loading = false;
@@ -52,10 +54,11 @@ export class LoginPage implements OnInit {
           } else {
             this.errorType = Errors.AUTHENTICATION_ERROR;
           }
-        },
+        }, 
         error => {
           this.loading = false;
           this.errorType = Errors.SERVER_ERROR;
+          alert(error);
         }
       );
     }

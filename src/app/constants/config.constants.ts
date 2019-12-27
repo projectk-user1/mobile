@@ -43,7 +43,8 @@ export const AppConstants = {
   getEventDetailsByEventType:'events/eventDetails',
   downloadPrfoileEndPoint:'http://localhost:8080/ProjectK/rest/export/pdf',
   fetchStatsEndPoint:'tools/stats',
-  fetchClientStatsEndPoint:'tools/clientStats'
+  fetchClientStatsEndPoint:'tools/clientStats',
+  myQRCodeEndPoint:'tools/myQRCode'
 };
 
 export class ErrorConstants {

@@ -22,4 +22,7 @@ export class SettingsPage implements OnInit {
   showProfilePicPage(){
     this.navCtrl.navigateForward(`/settings/profilePic`);
   }
+  showQRCodePage(){
+    this.navCtrl.navigateForward(`/settings/qrCode`);
+  }
 }

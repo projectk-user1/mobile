@@ -17,7 +17,7 @@
         <ion-tab-button (click)="navigateTofilter()">
             <ion-icon name="funnel" style="margin-right: 1em;"></ion-icon>
             <ion-label style="margin-right: 2em;">Filter</ion-label>
-            <ion-badge color="primary">{{filterCnt}}</ion-badge>
+            <ion-badge color="danger" *ngIf="filterCnt>0">{{filterCnt}}</ion-badge>
         </ion-tab-button>
     </ion-buttons>
   </ion-toolbar>
@@ -89,7 +89,7 @@
       </ion-item>
       <ion-item>
         <ion-button style="width: 25%;" fill="clear" (click)="updateFavouriteEvent(user)">
-          <ion-icon name="heart" [color]="user.favorite"></ion-icon>
+          <ion-icon name="star" [color]="user.favorite"></ion-icon>
         </ion-button>
         <ion-button style="width: 25%;" fill="clear" (click)="updateLikeEvent(user)">
           <ion-icon name="thumbs-up" slot="icon-only" [color]="user.likeColor"></ion-icon>

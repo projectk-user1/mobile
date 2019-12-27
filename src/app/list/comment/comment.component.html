@@ -1,6 +1,40 @@
- <ion-list *ngFor="let msgtmplt of userPrefs.MSGTMPLT">
-    <ion-item button (click)="applyComment(msgtmplt.fieldValue);">{{msgtmplt.fieldName}}</ion-item>
-</ion-list>
+ 
 
+<!-- <ion-header translucent>
+    <ion-toolbar>
+      <ion-title>Select a message to send</ion-title>
+      <ion-buttons slot="end">
+        <ion-button (click)="close()">Close</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content fullscreen>
+    <ion-list *ngFor="let msgtmplt of userPrefs.MSGTMPLT">
+        <ion-item button (click)="applyComment(msgtmplt.fieldValue);" detail="false">{{msgtmplt.fieldName}}</ion-item>
+    </ion-list>
+        
+    
+  </ion-content> -->
 
-<ion-button expand="block" (click)="close()">Close</ion-button>
+  <ion-header>
+    <ion-toolbar>    
+      <ion-title>Messages</ion-title>               
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <ion-header collapse="condense">              
+      <ion-toolbar>      
+        <ion-title size="large">Messages</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <!-- <ion-searchbar></ion-searchbar> -->
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-list *ngFor="let msgtmplt of userPrefs.MSGTMPLT">
+        <ion-item button (click)="applyComment(msgtmplt.fieldValue);" detail="false">{{msgtmplt.fieldName}}</ion-item>
+    </ion-list>
+    
+  <ion-button expand="block" (click)="close()">Close</ion-button>
+  </ion-content>

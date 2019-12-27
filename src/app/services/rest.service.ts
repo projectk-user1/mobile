@@ -26,6 +26,9 @@ export class RestService {
   httpGetServiceCall(serviceUrl) {
     if (AppConstants.useMockData || localStorage.getItem('useMock')=='Y') {
       serviceUrl = '/' + serviceUrl.split('/').join('_');
+      serviceUrl = serviceUrl.split('?').join('_');
+      serviceUrl = serviceUrl.split('=').join('_');
+      serviceUrl = serviceUrl.split('&').join('_');
       if (serviceUrl.startsWith('_')) {
         serviceUrl = serviceUrl.substring(1);
       }
@@ -42,19 +45,19 @@ export class RestService {
   }
 
   httpPostCall(serviceUrl, param) {
-    if (AppConstants.useMockData|| localStorage.getItem('useMock')=='Y') {
+    // alert('Inside Post call');
+    if (localStorage.getItem('useMock')=='Y') {
       const restURL = 'assets/mockData' + '/' + serviceUrl.split('/').join('_');
       return this._httpClient.get(`${restURL}.json`).pipe(map(res => res));
     }
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
+    
     if(localStorage.getItem('host')){
       this.apiEndPoint='';
       this.apiEndPoint=localStorage.getItem('host')+'/ProjectK/rest';
     }
+    // alert(`${this.apiEndPoint + '/' + serviceUrl}`);
+    // alert(JSON.stringify(param));
+    // alert(JSON.stringify(this.getHttpHeaders(serviceUrl)));
     return this._httpClient.post(`${this.apiEndPoint + '/' + serviceUrl}`, JSON.stringify(param), { headers: this.getHttpHeaders(serviceUrl) })
       .pipe(map(res => res));
   }

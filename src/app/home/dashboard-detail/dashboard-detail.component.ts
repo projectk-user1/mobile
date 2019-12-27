@@ -18,12 +18,12 @@ export class DashboardDetailComponent implements OnInit {
     sent: {
       key: 'sent',
       data: [],
-      text: 'Sent'
+      text: 'By You'
     },
     received: {
       key: 'received',
       data: [],
-      text: 'Received'
+      text: 'By Others'
     }
   };
 

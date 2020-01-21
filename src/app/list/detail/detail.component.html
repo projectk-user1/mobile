@@ -18,9 +18,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding ">
-
   <img [src]="profile.photoLink" fullscreen class="center"/>
-
   <ion-grid class="basic-Details">
     <ion-row>
       <ion-col style="text-align: center; font-size: 18px;">
@@ -32,9 +30,9 @@
       <ion-segment-button checked value="info">
         <ion-label>Basic Info</ion-label>
         </ion-segment-button>
-      <ion-segment-button value="astrology">
+    <!--   <ion-segment-button value="astrology">
         <ion-label>Astrology</ion-label>
-        </ion-segment-button>
+      </ion-segment-button> -->
       <ion-segment-button value="history">
         <ion-label>Log</ion-label>
         </ion-segment-button>
@@ -42,7 +40,6 @@
         <ion-label>Stats</ion-label>
     </ion-segment-button> -->
   </ion-segment>
-
   <div [ngSwitch]="selected">
     <div *ngSwitchCase="'astrology'">
       <ion-grid class="basic-Details grid-table">
@@ -205,11 +202,11 @@
       </div>
     </div>
     <div *ngSwitchDefault>
-      <h2> Personal Information </h2>
+      <!-- <h2> Personal Information </h2> -->
       <ion-list >
         <ion-item-group>
           <ion-item-divider style="border-radius: 10px; background-color: whitesmoke;" color="light" >
-            <ion-icon slot="end" name="create" size="medium" class="ion-margin-end"></ion-icon>
+            <ion-icon slot="end" name="book" size="medium" class="ion-margin-end"></ion-icon>
             <ion-label style="font-size: 20px;font-weight: bold;">About Profile</ion-label>
           </ion-item-divider>
         <!-- <ion-item>
@@ -345,7 +342,7 @@
             <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.star></ion-icon>
           </ion-label>
         </ion-item>
-        <ion-item>
+        <ion-item detail="true" button (click)="showGunaCount();">
             <ion-label style="font-size: 14px;"> Guna Count </ion-label>
             <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
               {{profile?.gunaCount}}/36
@@ -429,15 +426,11 @@
         </ion-item> -->
         </ion-item-group>
       </ion-list>
-      
           <p>
           <ion-chip outline color="primary" style="pointer-events: none;" *ngFor="let tag of profile.tags">
             <ion-label> {{tag}}</ion-label>
           </ion-chip>
         </p>
-       
-        
-      
       <!-- <ion-grid class="basic-Details">
         <ion-row>
           <ion-col>
@@ -514,8 +507,6 @@
           </ion-col>
         </ion-row>
       </ion-grid> -->
-
-
       <ion-list>
         <ion-item-group>
           <ion-item-divider style="border-radius: 10px; background-color: whitesmoke;" color="light" >
@@ -526,7 +517,6 @@
           <ion-icon slot="start" name="color-wand"></ion-icon>
           <ion-label style="font-size: 20px;font-weight: bold;">Partner Preferences</ion-label>
         </ion-item> -->
-
         <ion-item>
           <ion-label style="font-size: 14px;"> Marital Status </ion-label>
           <ion-label slot="end" class="ion-text-wrap" style="font-size: 14px;"
@@ -591,8 +581,6 @@
         </ion-item>
         </ion-item-group>
       </ion-list>
-
-
     </div>
     <!-- <div *ngSwitchCase="'stats'">
       statss

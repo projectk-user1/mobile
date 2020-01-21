@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
     {
       title: 'My Profile',
       url: '/settings',
-      icon: 'settings'
+      icon: 'person'
     },
     // {
     //   title: 'My Profile',

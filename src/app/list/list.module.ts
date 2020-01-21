@@ -9,6 +9,7 @@ import { DetailComponent } from './detail/detail.component';
 import { FilterComponent } from './filter/filter.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CommentComponent } from './comment/comment.component';
+import { GunaCountComponent } from './guna-count/guna-count.component';
 
 @NgModule({
   imports: [
@@ -28,12 +29,16 @@ import { CommentComponent } from './comment/comment.component';
       {
         path: 'filter',
         component: FilterComponent
+      },
+      {
+        path: 'details/gunaCount/:profileId',
+        component: GunaCountComponent
       }
     ])
   ],
-  declarations: [ListPage, DetailComponent, FilterComponent,CommentComponent],
+  declarations: [ListPage, DetailComponent, FilterComponent,CommentComponent,GunaCountComponent],
   entryComponents: [
-    ListPage, DetailComponent, FilterComponent,CommentComponent
+    ListPage, DetailComponent, FilterComponent,CommentComponent,GunaCountComponent
   ],
 })
 export class ListPageModule { }

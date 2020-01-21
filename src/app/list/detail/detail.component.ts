@@ -87,15 +87,15 @@ export class DetailComponent implements OnInit {
     
 
   }
-  segmentChanged(e){
+  segmentChanged(e) {
     console.log(e.detail.value);
-    this.selected  = e.detail.value;
-    if (e.detail.value=='astrology') {
+    this.selected = e.detail.value;
+    if (e.detail.value == 'astrology') {
       if (!this.gunaMatchResults) {
         if (typeof this.loggedInUser === 'undefined') {
-          this.loggedInUser='';
-      }
-      this.loading.present();
+          this.loggedInUser = '';
+        }
+        this.loading.present();
         this._restService.httpGetServiceCall(AppConstants.gunaCountForProfile + "?loggedInProfileId=" + this.loggedInUser + "&selectedProfile=" + this.profileId).subscribe((result) => {
           this.gunaMatchResults = result;
           console.log(result);
@@ -191,5 +191,8 @@ export class DetailComponent implements OnInit {
        style: 'currency',
        currency: 'INR'
    });
+   }
+   showGunaCount(){
+    this.navCtrl.navigateForward(`/list/details/gunaCount/${this.profileId}`);
    }
 }

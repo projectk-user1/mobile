@@ -102,16 +102,13 @@ export class ListPage implements OnInit {
   }
 
   navigateTofilter(){
-    
     this.navCtrl.navigateForward(`/list/filter`);
   }
   
- 
   // add back when alpha.4 is out
   // navigate(item) {
   //   this.router.navigate(['/list', JSON.stringify(item)]);
   // }
-
   // showDetail(item:any){
   //   // const nav = document.querySelector('ion-nav');
   //   // nav.push('detail', { item });

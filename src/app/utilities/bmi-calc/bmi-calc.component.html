@@ -27,6 +27,30 @@
       </ion-list>
   </form>
   <ion-list>
+    <ion-item-group>
+      <ion-item-divider style="border-radius: 10px; background-color: whitesmoke;" color="light" >
+        <ion-icon slot="end" name="book" size="toolbar" class="ion-margin-end"></ion-icon>
+        <ion-label style="font-size: 20px;font-weight: bold;">Reference</ion-label>
+      </ion-item-divider>
+      <ion-item>
+        <ion-label style="font-size: 14px;"> Under Weight </ion-label>
+        <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">&lt; 18.5</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label style="font-size: 14px;"> Normal </ion-label>
+        <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">18.5 - 24.9</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label style="font-size: 14px;"> Over Weight </ion-label>
+        <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap" >25 - 29.9</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label style="font-size: 14px;"> Obese </ion-label>
+        <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap" >&gt; 30</ion-label>
+      </ion-item>
+      </ion-item-group>
+    </ion-list>
+  <!-- <ion-list>
     <ion-item class="bmi-color blue">
         <ion-label>Under Weight</ion-label>
         <ion-label> &lt; 18.5 </ion-label>
@@ -43,5 +67,5 @@
         <ion-label>Obese</ion-label>
         <ion-label> &gt; 30 </ion-label>
     </ion-item>
-  </ion-list>
+  </ion-list> -->
 </ion-content>

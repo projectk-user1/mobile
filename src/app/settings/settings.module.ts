@@ -10,6 +10,7 @@ import { PartnerPreferenceComponent } from './partner-preference/partner-prefere
 import { PasswordComponent } from './password/password.component';
 import { ProfilePicComponent } from './profile-pic/profile-pic.component';
 import { MyQRComponent } from './my-qr/my-qr.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,9 @@ const routes: Routes = [
   },{
     path: 'qrCode',
     component: MyQRComponent
+  },{
+    path: 'editProfile',
+    component: EditProfileComponent
   },
 ];
 
@@ -42,7 +46,7 @@ const routes: Routes = [
     FontAwesomeModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [SettingsPage,PartnerPreferenceComponent,PasswordComponent,ProfilePicComponent,MyQRComponent],
-  entryComponents: [SettingsPage,PartnerPreferenceComponent,PasswordComponent,ProfilePicComponent,MyQRComponent],
+  declarations: [SettingsPage,PartnerPreferenceComponent,PasswordComponent,ProfilePicComponent,MyQRComponent,EditProfileComponent],
+  entryComponents: [SettingsPage,PartnerPreferenceComponent,PasswordComponent,ProfilePicComponent,MyQRComponent,EditProfileComponent],
 })
 export class SettingsPageModule {}

@@ -25,4 +25,7 @@ export class SettingsPage implements OnInit {
   showQRCodePage(){
     this.navCtrl.navigateForward(`/settings/qrCode`);
   }
+  showEditProfilePage(){
+    this.navCtrl.navigateForward(`/settings/editProfile`);
+  }
 }

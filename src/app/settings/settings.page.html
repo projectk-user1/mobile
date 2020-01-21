@@ -1,49 +1,57 @@
 <ion-header>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
-      <ion-title>
-          settings
-      </ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-toolbar color="toolbar">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Settings
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content>
-    <ion-list>
-        
-        <ion-item detail="true" button (click)="showPasswordPage();" lines="full">
-          <ion-icon slot="start" color="medium" name="contacts"></ion-icon>
-          <ion-label class="ion-text-wrap">
-              <h1>Account Details</h1>
-              <h3>update account password </h3>
-            </ion-label>
-        </ion-item>
+  <ion-list>
 
-        <ion-item detail="true" button (click)="showPartnerPreferencePage();" lines="full">
-            <ion-icon slot="start" color="medium" name="color-wand"></ion-icon>
-          <ion-label>
-            <h1>Partner Preferences</h1>
-            <h3>change your partner Preferences</h3>
-          </ion-label>
-        </ion-item>
+    <ion-item detail="true" button (click)="showEditProfilePage();" lines="full">
+      <ion-icon slot="start" color="toolbar" name="person"></ion-icon>
+      <ion-label>
+        <h1>My Profile</h1>
+        <h3>view Edit Profile</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item detail="true" button (click)="showPasswordPage();" lines="full">
+      <ion-icon slot="start" color="toolbar" name="contacts"></ion-icon>
+      <ion-label class="ion-text-wrap">
+        <h1>Account Details</h1>
+        <h3>update account password </h3>
+      </ion-label>
+    </ion-item>
 
-        <ion-item detail="true" button (click)="showProfilePicPage();" lines="full">
-            <ion-icon  slot="start" color="medium" name="image"></ion-icon>
-          <ion-label>
-            <h1>Profile Pic</h1>
-            <h3>update profile pic video</h3>
-          </ion-label>
-          
-        </ion-item>
-        <ion-item detail="true" button (click)="showQRCodePage();" lines="full">
-          <ion-icon  slot="start" color="medium" name="barcode"></ion-icon>
-        <ion-label>
-          <h1>My QR Code</h1>
-          <h3>view QR Code</h3>
-        </ion-label>
-        
-      </ion-item>
+    <ion-item detail="true" button (click)="showPartnerPreferencePage();" lines="full">
+      <ion-icon slot="start" color="toolbar" name="color-wand"></ion-icon>
+      <ion-label>
+        <h1>Partner Preferences</h1>
+        <h3>change your partner Preferences</h3>
+      </ion-label>
+    </ion-item>
 
-        
-      </ion-list>
+    <ion-item detail="true" button (click)="showProfilePicPage();" lines="full">
+      <ion-icon slot="start" color="toolbar" name="image"></ion-icon>
+      <ion-label>
+        <h1>Profile Pic</h1>
+        <h3>update profile pic video</h3>
+      </ion-label>
+
+    </ion-item>
+    <ion-item detail="true" button (click)="showQRCodePage();" lines="full">
+      <ion-icon slot="start" color="toolbar" name="barcode"></ion-icon>
+      <ion-label>
+        <h1>My QR Code</h1>
+        <h3>view QR Code</h3>
+      </ion-label>
+
+    </ion-item>
+
+    
+
+  </ion-list>
 </ion-content>

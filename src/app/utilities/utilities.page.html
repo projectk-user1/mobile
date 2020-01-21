@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="toolbar">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -12,7 +12,7 @@
   <ion-list >
       
       <ion-item detail="true" button (click)="showDateDiffCalcPage();" lines="full">
-        <ion-icon slot="start" color="medium" name="calculator"></ion-icon>
+        <ion-icon slot="start" color="toolbar" name="calculator"></ion-icon>
         <ion-label class="ion-text-wrap">
             <h1>Calculator Utilities</h1>
             <h3>Date between two dates </h3>
@@ -20,7 +20,7 @@
       </ion-item>
 
       <ion-item detail="true" button (click)="showBmiPage();" lines="full">
-          <ion-icon slot="start" color="medium" name="body"></ion-icon>
+          <ion-icon slot="start" color="toolbar" name="body"></ion-icon>
         <ion-label>
           <h1>BMI</h1>
           <h3>Calculate BMI from Height & Weight</h3>

@@ -29,9 +29,14 @@ export class AppComponent implements OnInit{
     },
     {
       title: 'My Profile',
-      url: '/myProfile',
-      icon: 'person'
+      url: '/settings',
+      icon: 'settings'
     },
+    // {
+    //   title: 'My Profile',
+    //   url: '/myProfile',
+    //   icon: 'person'
+    // },
     {
       title: 'Utilities',
       url: '/utilities',
@@ -42,11 +47,7 @@ export class AppComponent implements OnInit{
       url: '/contact-us',
       icon: 'contact'
     },
-    {
-      title: 'Settings',
-      url: '/settings',
-      icon: 'settings'
-    },
+    
     {
       title: 'Logout',
       url: '/logout',

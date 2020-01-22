@@ -19,6 +19,10 @@ export class LoginPage implements OnInit {
   constructor(public navCtrl: NavController, private _formBuilder: FormBuilder, private _restService: RestService) { }
 
   ngOnInit() {
+    this.reset();
+  }
+
+  reset(){
     this.signInForm = this._formBuilder.group({
       loginId: ['', Validators.required],
       password: ['', Validators.required],
@@ -26,7 +30,6 @@ export class LoginPage implements OnInit {
       useMock:['']
     });
   }
-
   public login() {
     // alert('login');
     localStorage.removeItem('host');
@@ -45,12 +48,12 @@ export class LoginPage implements OnInit {
         (data: any) => {
           this.loading = false;
           if (data) {
-            
             UserSession.createUserSession(data.data);
             if (UserSession.getUserSession().userInfo.userRole === 'U') {
               localStorage.setItem('jwt', data.data);
               this.navCtrl.navigateForward('/home');
             }
+            this.reset();
           } else {
             this.errorType = Errors.AUTHENTICATION_ERROR;
           }

@@ -41,19 +41,17 @@ export class AppComponent implements OnInit{
       title: 'Utilities',
       url: '/utilities',
       icon: 'build'
-    },
-    {
+    },{
       title: 'Contact Us',
       url: '/contact-us',
       icon: 'contact'
-    },
-    
-    {
-      title: 'Logout',
-      url: '/logout',
-      icon: 'log-out'
-      
     }
+    // ,{
+    //   title: 'Logout',
+    //   url: '/logout',
+    //   icon: 'log-out'
+      
+    // }
   ];
 
   constructor(
@@ -77,4 +75,8 @@ export class AppComponent implements OnInit{
       UserSession.createUserSession(token);
     }
   }
+  logOut(){
+    localStorage.removeItem('jwt');
+    UserSession.userSession = {token: '', userInfo: null};
+   }
 }

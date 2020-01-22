@@ -192,11 +192,11 @@
           </ion-avatar>
           <ion-label class="timeline-label ion-text-wrap">
             <p *ngIf="event?.fromUserId?.userId==loggedInUser">
-              <ion-icon name="send"></ion-icon>
+              <ion-icon name="arrow-up" style="transform: rotate(45deg);"></ion-icon>
               {{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}
             </p>
             <p *ngIf="event?.toUserId?.userId==loggedInUser">
-              <ion-icon name="send" style="transform: rotate(180deg);"></ion-icon>
+              <ion-icon name="arrow-down" style="transform: rotate(45deg);"></ion-icon>
               {{event?.fromUserId?.userId}} {{event?.fromUserId?.firstname}}
             </p>
             <p>{{event?.recCrtTs}} </p>

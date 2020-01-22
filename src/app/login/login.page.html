@@ -1,31 +1,66 @@
-<ion-content>
-		<ion-grid>
-			<ion-row class="ion-justify-content-center">
-				<ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
-					<div class="ion-text-center">
-						<h4>Login </h4>
-					</div><form [formGroup]="signInForm" >
+<ion-header>
+	<ion-toolbar color="toolbar">
+		<ion-title style="font-size: 16px;text-align: center;">
+			Login
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding" style="top:20%;">
+	<form [formGroup]="signInForm">
+	<ion-list lines="full" class="ion-no-margin ion-no-padding">
+		<ion-item>
+			<ion-label position="floating">User name <ion-text color="danger"> * </ion-text></ion-label>
+			<ion-input required type="text"  formControlName="loginId"></ion-input>
+			<ion-icon name="person" slot="end"></ion-icon>
+		  </ion-item>
+		  <ion-item>
+			<ion-label position="floating">Password<ion-text color="danger"> * </ion-text></ion-label>
+			<ion-input required type="password"  formControlName="password"></ion-input>
+			<ion-icon name="key" slot="end"></ion-icon>
+		  </ion-item>
+		  <ion-item>
+			<ion-label position="floating">Host</ion-label>
+			<ion-input type="text"  formControlName="host"></ion-input>
+		  </ion-item>
+		  <ion-item>
+			<ion-label position="floating">Use Mock</ion-label>
+			<ion-input type="text"  formControlName="useMock"></ion-input>
+		  </ion-item>
+		  <ion-button size="large" expand="block" [disabled]="!signInForm.valid" (click)="login()">Login
+		</ion-button>
+	</ion-list>
+	</form>
+</ion-content>
+<!-- <ion-content>
+	<ion-grid>
+		<ion-row class="ion-justify-content-center">
+			<ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
+				<div class="ion-text-center">
+					<h4>Login </h4>
+				</div>
+				<form [formGroup]="signInForm">
 					<div class="ion-padding">
 						<ion-item>
 							<ion-input type="text" placeholder="Username" formControlName="loginId"></ion-input>
 						</ion-item>
-		
+
 						<ion-item>
 							<ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
 						</ion-item>
 						<ion-item>
-								<ion-input type="text" placeholder="Host" formControlName="host"></ion-input>
+							<ion-input type="text" placeholder="Host" formControlName="host"></ion-input>
 						</ion-item>
 						<ion-item>
-								<ion-input type="text" placeholder="Use Mock Data" formControlName="useMock"></ion-input>
+							<ion-input type="text" placeholder="Use Mock Data" formControlName="useMock"></ion-input>
 						</ion-item>
 					</div>
-		
+
 					<div class="ion-padding">
-						<ion-button size="large" expand="block" [disabled]="!signInForm.valid" (click)="login()">Login</ion-button>
-			  </div>
-			  </form>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
-	</ion-content>
+						<ion-button size="large" expand="block" [disabled]="!signInForm.valid" (click)="login()">Login
+						</ion-button>
+					</div>
+				</form>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content> -->

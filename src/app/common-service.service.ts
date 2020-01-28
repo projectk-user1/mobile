@@ -10,6 +10,7 @@ export class CommonService {
   // filterValueChanged: Subject<any> = new Subject<any>();
   commentApplied: Subject<any> = new Subject<any>();
   private filterObj: any = {};
+  private loggedInUserObj:any;
   setFilter(obj:any){
     this.filterObj=obj;
     // this.filterValueChanged.next(obj);
@@ -19,5 +20,12 @@ export class CommonService {
   }
   saveSelectedComment(obj:any){
     this.commentApplied.next(obj);
+  }
+  
+  setLoggedInUserObj(obj:any){
+    this.loggedInUserObj=obj;
+  }
+  getLoggedInUserObj(){
+    return this.loggedInUserObj;
   }
 }

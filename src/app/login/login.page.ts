@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
+import { NavController, MenuController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { RestService } from '../services/rest.service';
 import { Errors } from '../constants/errors';
@@ -16,7 +16,10 @@ export class LoginPage implements OnInit {
   signInForm: FormGroup;
   errorType = null;
   loading = false;
-  constructor(public navCtrl: NavController, private _formBuilder: FormBuilder, private _restService: RestService) { }
+  constructor(public navCtrl: NavController, 
+              private _formBuilder: FormBuilder, 
+              private _restService: RestService,
+              private menu: MenuController) { }
 
   ngOnInit() {
     this.reset();
@@ -51,6 +54,7 @@ export class LoginPage implements OnInit {
             UserSession.createUserSession(data.data);
             if (UserSession.getUserSession().userInfo.userRole === 'U') {
               localStorage.setItem('jwt', data.data);
+              this.menu.enable(true);
               this.navCtrl.navigateForward('/home');
             }
             this.reset();

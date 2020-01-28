@@ -9,6 +9,7 @@ import { MasterFieldsService } from '../services/master-fields/master-fields.ser
 import { AppConstants } from '../constants/config.constants';
 import { LoadingService } from '../services/loading.service';
 import { UserSession } from '../_models/UserSession';
+import { CommonService } from '../common-service.service';
 
 @Component({
   selector: 'app-home',
@@ -21,9 +22,11 @@ export class HomePage implements OnInit {
   eventCards = UserDashboardDetails.eventDetails;
   userEvents = [];
   loggedInUser:any;
+  loggedInUserPic:any;
   constructor(public navCtrl: NavController,
               private _restService: RestService,
               private masterFieldsService: MasterFieldsService,
+              private commonService:CommonService,
               public loading: LoadingService) { }
 
   ngOnInit() {
@@ -40,11 +43,14 @@ export class HomePage implements OnInit {
     if (!this.masterFieldsService.userPrefs) {
       forkJoin([
       this._restService.httpGetServiceCall(AppConstants.mstrFieldsEndPoint),
-      this._restService.httpGetServiceCall('events/myEvents')])  
+      this._restService.httpGetServiceCall('events/myEvents'),
+      this._restService.httpGetServiceCall(AppConstants.searchByIdEndPoint + "/" + UserSession.getUserSession().userInfo.userId)])  
       .subscribe((res: any) => {
         this.masterFieldsService.createMstrFieldMap(res[0]);
         this.masterFieldsService.userPrefs = res[0];
         this.addAdditionalDetails(res[1]);
+        this.commonService.setLoggedInUserObj(this.masterFieldsService.parseSearchResults(res[2]));
+        this.loggedInUserPic=this.commonService.getLoggedInUserObj().photoLink;
         this.loading.dismiss();
       }, error => {
         this.loading.dismiss();
@@ -80,5 +86,7 @@ export class HomePage implements OnInit {
   showProfile(userId:any){
     this.navCtrl.navigateForward(`/list/details/${userId}`);
   }
-  
+  showMyProfile(){
+    this.navCtrl.navigateForward(`/settings`);
+  }
 }

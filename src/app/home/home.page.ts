@@ -10,6 +10,7 @@ import { AppConstants } from '../constants/config.constants';
 import { LoadingService } from '../services/loading.service';
 import { UserSession } from '../_models/UserSession';
 import { CommonService } from '../common-service.service';
+import { ToastService } from '../services/toast.service';
 
 @Component({
   selector: 'app-home',
@@ -23,15 +24,18 @@ export class HomePage implements OnInit {
   userEvents = [];
   loggedInUser:any;
   loggedInUserPic:any;
+  loggedInUserInfo:any;
   constructor(public navCtrl: NavController,
               private _restService: RestService,
               private masterFieldsService: MasterFieldsService,
               private commonService:CommonService,
-              public loading: LoadingService) { }
+              public loading: LoadingService,
+              public toastService: ToastService) { }
 
   ngOnInit() {
     this.loading.present();
     this.loggedInUser=UserSession.getUserSession().userInfo.userId;
+    this.loggedInUserInfo=UserSession.getUserSession().userInfo;
     this.eventCards.forEach(card => {
       forkJoin([
         this._restService.httpGetServiceCall(`events/myEventsCnt/sent/${card.id}`),
@@ -54,13 +58,20 @@ export class HomePage implements OnInit {
         this.loading.dismiss();
       }, error => {
         this.loading.dismiss();
+        this.toastService.presentToast('Error while fetching data');
       });
     }else{
-      this._restService.httpGetServiceCall('events/myEvents').subscribe((events) => {
-        this.addAdditionalDetails(events);
+      forkJoin([
+        this._restService.httpGetServiceCall('events/myEvents'),
+        this._restService.httpGetServiceCall(AppConstants.searchByIdEndPoint + "/" + UserSession.getUserSession().userInfo.userId)])  
+        .subscribe((res: any) => {
+        this.addAdditionalDetails(res[0]);
+        this.commonService.setLoggedInUserObj(this.masterFieldsService.parseSearchResults(res[1]));
+        this.loggedInUserPic=this.commonService.getLoggedInUserObj().photoLink;
         this.loading.dismiss();
       }, error =>{
         this.loading.dismiss();
+        this.toastService.presentToast('Error while fetching data');
       })
     }
   }
@@ -88,5 +99,8 @@ export class HomePage implements OnInit {
   }
   showMyProfile(){
     this.navCtrl.navigateForward(`/settings`);
+  }
+  showMySearchPage(){
+    this.navCtrl.navigateForward(`/search`);
   }
 }

@@ -28,8 +28,9 @@ export class DashboardDetailComponent implements OnInit {
   };
 
   eventsAsArray;
-
   eventType;
+  sentEvents:any[];
+  receivedEvents:any[];
 
   constructor(
     private route: ActivatedRoute,
@@ -53,14 +54,27 @@ export class DashboardDetailComponent implements OnInit {
     this.eventsAsArray = Object.keys(this.events);
     let id = this.route.snapshot.paramMap.get('id');
     this.eventType = UserDashboardDetails.eventDetails.find(event => event.id === +id)
-    this.eventsAsArray.forEach(event => {
-      this._restService.httpGetServiceCall(`events/myEvents/${this.events[event].key}/${id}`).subscribe(profiles => {
-        this.events[event].data = <any[]>profiles;
-        console.log(this.events[event].data);
-       this.events[event].data.forEach((obj) => {
-        obj=this.parseSearchResults(obj);
-      })
+    // this.eventsAsArray.forEach(event => {
+    //   this._restService.httpGetServiceCall(`events/myEvents/${this.events[event].key}/${id}`).subscribe(profiles => {
+    //     this.events[event].data = <any[]>profiles;
+    //     console.log(this.events[event].data);
+    //    this.events[event].data.forEach((obj) => {
+    //     obj=this.parseSearchResults(obj);
+    //   })
+    //   this.loading.dismiss();
+    //   });
+    // });
+    this._restService.httpGetServiceCall(`events/myEvents/sent/${id}`).subscribe(profiles => {
+      this.sentEvents = <any[]>profiles;
+      this.sentEvents.forEach((obj) => {
+        obj = this.parseSearchResults(obj);
+      });
       this.loading.dismiss();
+    });
+    this._restService.httpGetServiceCall(`events/myEvents/received/${id}`).subscribe(profiles => {
+      this.receivedEvents = <any[]>profiles;
+      this.receivedEvents.forEach((obj) => {
+        obj = this.parseSearchResults(obj);
       });
     });
   }

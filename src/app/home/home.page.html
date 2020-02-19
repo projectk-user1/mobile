@@ -3,8 +3,9 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title class="ion-text-center">
-      Home
+    <ion-title style="font-size: inherit;">
+      Hi, {{loggedInUserInfo?.firstName}}
+      <!-- <ion-searchbar [(ngModel)]="queryText" (ionChange)="updateSchedule()" placeholder="Search"></ion-searchbar> -->
     </ion-title >
     <ion-buttons slot="end">
       <ion-button (click)="showMyProfile()">
@@ -15,6 +16,10 @@
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
+    <ion-toolbar color="toolbar">
+      <ion-searchbar [(ngModel)]="queryText" (ionFocus)="showMySearchPage()" placeholder="Search"></ion-searchbar>
+    </ion-toolbar>
+    
 </ion-header>
 <ion-content>
   

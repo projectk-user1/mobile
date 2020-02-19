@@ -1,14 +1,79 @@
 <ion-header translucent>
-  <ion-toolbar color="toolbar">
+  <ion-toolbar color="toolbar" class="ion-no-border">
     <ion-buttons slot="start">
       <ion-back-button (click)="backToDashboard();"></ion-back-button>
     </ion-buttons>
     <ion-title>Dashboard Details</ion-title>
   </ion-toolbar>
+  <ion-toolbar class="ion-no-border" color="toolbar">
+    <ion-segment (ionChange)="slides.slideTo(segment)" [(ngModel)]="segment"  color="toolbar" class="ion-no-border">
+      <ion-segment-button value="0" checked type="button" class="tabbutton">
+        <ion-label style="color:whitesmoke;">Sent</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="1">
+        <ion-label style="color: whitesmoke;">Received</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  
+  <ion-slides #slides (ionSlideWillChange)="segment=''+slides.getActiveIndex()" pager="true">
+    <ion-slide style="min-height: 200px;">
+      <ion-list>
+      <div *ngFor="let user of sentEvents">
+        <ion-item detail="true" button (click)="showProfile(user);" >
+            <ion-avatar slot="start">
+              <img [src]="user?.photoLink">
+            </ion-avatar>
+            <ion-label>
+              <h3>{{user?.userId}} - {{user?.firstname}}</h3>
+              <p>{{user?.age}} yrs, {{user?.height?.cms}} cms, {{user?.maritalstatus}}</p>
+              <p>
+                <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
+                {{user?.occupation}} <ion-icon name="school" class="ion-margin-start"></ion-icon> {{user?.education}}</p>
+              <p>
+                <fa-icon [icon]="['fas','map-marker']"></fa-icon>
+                {{user?.distance?.kms}} kms
+                <ion-icon name="planet" slot="start"></ion-icon>
+                {{user?.gunaCount}}/36
+                {{formatCurrency(user?.salary)}}
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-slide>
+    <ion-slide style="min-height: 200px;">
+      <ion-list>
+      <div *ngFor="let user of receivedEvents">
+        <ion-item detail="true" button (click)="showProfile(user);" >
+            <ion-avatar slot="start">
+              <img [src]="user?.photoLink">
+            </ion-avatar>
+            <ion-label>
+              <h3>{{user?.userId}} - {{user?.firstname}}</h3>
+              <p>{{user?.age}} yrs, {{user?.height?.cms}} cms, {{user?.maritalstatus}}</p>
+              <p>
+                <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
+                {{user?.occupation}} <ion-icon name="school" class="ion-margin-start"></ion-icon> {{user?.education}}</p>
+              <p>
+                <fa-icon [icon]="['fas','map-marker']"></fa-icon>
+                {{user?.distance?.kms}} kms
+                <ion-icon name="planet" slot="start"></ion-icon>
+                {{user?.gunaCount}}/36
+                {{formatCurrency(user?.salary)}}
+              </p>
+            </ion-label>
+          </ion-item>
+        </div>
+      </ion-list>
+    </ion-slide>
+    
+  </ion-slides>
+
+  <!-- <ion-list>
       <div  *ngFor="let event of eventsAsArray">
           <ion-item>
               <ion-icon slot="end" [name]="eventType?.icon" color="primary"></ion-icon>
@@ -25,14 +90,12 @@
                 <p>{{user?.age}} yrs, {{user?.height?.cms}} cms, {{user?.maritalstatus}}</p>
                 <p>
                   <fa-icon [icon]="['fas','briefcase']" ></fa-icon>
-                  {{user?.occupation}} <ion-icon name="school"></ion-icon> {{user?.education}}</p>
+                  {{user?.occupation}} <ion-icon name="school" class="ion-margin-start"></ion-icon> {{user?.education}}</p>
                 <p>
                   <fa-icon [icon]="['fas','map-marker']"></fa-icon>
                   {{user?.distance?.kms}} kms
                   <ion-icon name="planet" slot="start"></ion-icon>
                   {{user?.gunaCount}}/36
-    
-                  <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->
                   {{formatCurrency(user?.salary)}}
                 </p>
               </ion-label>
@@ -40,7 +103,7 @@
           </div>
       </div>
     
-  </ion-list>
+  </ion-list> -->
 
   <!--
       <div *ngIf="selectedItem" padding>

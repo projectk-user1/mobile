@@ -15,6 +15,10 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 import { far } from '@fortawesome/free-regular-svg-icons';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
+// import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
+
+
 
 
 library.add(fas,far);
@@ -26,13 +30,16 @@ library.add(fas,far);
     IonicModule.forRoot(),
     AppRoutingModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     SocialSharing,
     Base64ToGallery,
+    // QRScanner,
+    BarcodeScanner,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     {
             provide: HTTP_INTERCEPTORS,

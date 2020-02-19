@@ -1,4 +1,4 @@
-<ion-header>
+<!-- <ion-header>
   <ion-toolbar color="toolbar">
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -7,9 +7,17 @@
       Search By Id
     </ion-title>
   </ion-toolbar>
-</ion-header>
+</ion-header> -->
 
-<ion-content fullscreen class="ion-padding ">
+<ion-header translucent>
+  <ion-toolbar color="toolbar">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="backToHome();"></ion-back-button>
+    </ion-buttons>
+    <ion-title style="font-size: 16px;">Search By Id </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="ion-padding">
   <ion-list>
     <!-- <ion-item-group>
       <ion-item-divider>
@@ -19,10 +27,19 @@
       <ion-item>
         <ion-label position="floating" >Profile Id <ion-text color="danger">*</ion-text></ion-label>
         <ion-input required type="text" [(ngModel)]="profileId" (keyup.enter)="search()"></ion-input>
-        <ion-icon name="search" slot="end" class="ion-align-self-center" (click)="search();"></ion-icon>
+        <ion-icon name="search" slot="start" class="ion-align-self-center" (click)="search();"></ion-icon>
+        <ion-icon name="barcode" slot="end" class="ion-align-self-center" (click)="goToBarcodeScan();"></ion-icon>
       </ion-item>
     <!-- </ion-item-group> -->
   </ion-list>
+  <div >
+    <!-- <p>
+      Scanned Code Text : <b>{{scannedData|json}}</b>
+    </p> -->
+    <p>
+      Profile Id : <b>{{profileId}}</b>
+    </p>
+  </div>
   
 
   <ion-item detail="true" button (click)="showProfile(profile);" *ngIf="profile">

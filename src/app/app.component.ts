@@ -22,11 +22,11 @@ export class AppComponent implements OnInit{
       url: '/list',
       icon: 'contacts'
     },
-    {
-      title: 'Search By Id',
-      url: '/search',
-      icon: 'search'
-    },
+    // {
+    //   title: 'Search By Id',
+    //   url: '/search',
+    //   icon: 'search'
+    // },
     // {
     //   title: 'My Profile',
     //   url: '/settings',

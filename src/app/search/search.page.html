@@ -26,7 +26,7 @@
       </ion-item-divider> -->
       <ion-item>
         <ion-label position="floating" >Profile Id <ion-text color="danger">*</ion-text></ion-label>
-        <ion-input required type="text" [(ngModel)]="profileId" (keyup.enter)="search()"></ion-input>
+        <ion-input autofocus="true" required type="text" [(ngModel)]="profileId" (keyup.enter)="search()"></ion-input>
         <ion-icon name="search" slot="start" class="ion-align-self-center" (click)="search();"></ion-icon>
         <ion-icon name="barcode" slot="end" class="ion-align-self-center" (click)="goToBarcodeScan();"></ion-icon>
       </ion-item>
@@ -35,10 +35,10 @@
   <div >
     <!-- <p>
       Scanned Code Text : <b>{{scannedData|json}}</b>
-    </p> -->
+    </p> 
     <p>
       Profile Id : <b>{{profileId}}</b>
-    </p>
+    </p>-->
   </div>
   
 

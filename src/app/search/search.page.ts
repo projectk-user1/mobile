@@ -45,11 +45,29 @@ export class SearchPage implements OnInit {
   search() {
     console.log(this.profileId);
     this.loading.present();
-    this.profile ;
+    this.profile=null ;
     this._restService.httpGetServiceCall(AppConstants.searchByIdEndPoint + "/" + this.profileId).subscribe((res: any) => {
       this.loading.dismiss();
       if (res != null) {
         let response = this.parseSearchResults(res)
+        this.profile = response;
+        this.profile.sharableLink = 'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ'
+      } else {
+        this.toastService.presentToast('Profile not found');
+      }
+    }, error => {
+      this.loading.dismiss();
+      this.toastService.presentToast('Profile not found');
+    });
+  }
+  searchByUuid(uuid:any) {
+    this.loading.present();
+    this.profile=null ;
+    this._restService.httpGetServiceCall(AppConstants.searchByUuidEndPoint + "/" + uuid).subscribe((res: any) => {
+      this.loading.dismiss();
+      if (res != null) {
+        let response = this.parseSearchResults(res);
+        this.profileId=response.userId;
         this.profile = response;
         this.profile.sharableLink = 'https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ'
       } else {
@@ -93,9 +111,8 @@ export class SearchPage implements OnInit {
     this.barcodeCtrl.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
       this.scannedData = JSON.parse(barcodeData.text);
-      if(this.scannedData.profileId){
-        this.profileId=this.scannedData.profileId;
-        this.search();
+      if(this.scannedData.profileUuid){
+        this.searchByUuid(this.scannedData.profileUuid);
       }else{
         // alert('Not a Valid QR Code');
         this.toastService.presentToast('Not a Valid QR Code');

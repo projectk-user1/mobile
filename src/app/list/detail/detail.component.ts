@@ -109,7 +109,9 @@ export class DetailComponent implements OnInit {
     }
   }
   sendShare() {
-    this.socialSharing.share(this.profile.profileId, this.profile.profileId, null, this.profile.sharableLink);
+    // this.socialSharing.share(this.profile.profileId, this.profile.profileId, null, this.profile.sharableLink);
+    let qrCode="data:image/png;base64," + this.profile.uuid;
+    this.socialSharing.share(this.profile.profileId, this.profile.profileId, qrCode, null);
   }  
   parseSearchResults(obj) {
     return this.masterFieldsService.parseSearchResults(obj);

@@ -2,6 +2,7 @@ export const AppConstants = {
   apiEndpoint: 'http://localhost:8080/ProjectK/rest',
   loginEndPoint: 'login/validate',
   searchByIdEndPoint: '/user/id',
+  searchByUuidEndPoint: '/user',
   searchEndPoint: '/fetchProfiles',
   admin: 'admin',
   client: 'client',

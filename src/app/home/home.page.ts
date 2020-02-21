@@ -19,6 +19,8 @@ import { ToastService } from '../services/toast.service';
 })
 
 export class HomePage implements OnInit {
+  
+  
 
   eventCards = UserDashboardDetails.eventDetails;
   userEvents = [];
@@ -31,8 +33,10 @@ export class HomePage implements OnInit {
               private commonService:CommonService,
               public loading: LoadingService,
               public toastService: ToastService) { }
+    ngOnInit() {
 
-  ngOnInit() {
+    }
+    ionViewWillEnter() {
     this.loading.present();
     this.loggedInUser=UserSession.getUserSession().userInfo.userId;
     this.loggedInUserInfo=UserSession.getUserSession().userInfo;

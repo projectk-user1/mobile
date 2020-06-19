@@ -202,17 +202,37 @@
           <ion-avatar slot="start">
               <img *ngIf="event?.toUserId?.photoLink" [src]="event?.toUserId?.photoLink" >
           </ion-avatar>
-          <ion-label class="timeline-label ion-text-wrap">
-            <p *ngIf="event?.fromUserId?.userId==loggedInUser">
-              <ion-icon name="arrow-up" style="transform: rotate(45deg);"></ion-icon>
+          <!-- <ion-text *ngIf="event?.fromUserId?.userId==loggedInUser" slot="start" style="text-align: right;">
+            <p>
               {{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}
             </p>
-            <p *ngIf="event?.toUserId?.userId==loggedInUser">
-              <ion-icon name="arrow-down" style="transform: rotate(45deg);"></ion-icon>
+            <p>{{event?.recCrtTs}} </p>
+          </ion-text>
+          <ion-text *ngIf="event?.toUserId?.userId==loggedInUser" slot="end" style="text-align: left;">
+          <p >
+            {{event?.fromUserId?.userId}} {{event?.fromUserId?.firstname}}
+          </p>
+        </ion-text> -->
+          <ion-label class="timeline-label ion-text-wrap">
+            <div *ngIf="event?.fromUserId?.userId==loggedInUser">
+            <p>
+              {{event?.toUserId?.userId}} {{event?.toUserId?.firstname}}
+            </p>
+            <p>
+              <ion-icon name="arrow-round-up" style="transform: rotate(45deg);font-size: 30px; margin-bottom: -8px; " color="success"></ion-icon>
+              {{event?.recCrtTs}}
+            </p>
+          </div>
+          <div *ngIf="event?.toUserId?.userId==loggedInUser">
+            <p>
               {{event?.fromUserId?.userId}} {{event?.fromUserId?.firstname}}
             </p>
-            <p>{{event?.recCrtTs}} </p>
-            <p *ngIf="event?.message">{{event?.message}}</p>
+            <p>
+              <ion-icon name="arrow-round-down" style="transform: rotate(45deg);font-size: 30px; margin-bottom: -8px;" color="success"></ion-icon>
+              {{event?.recCrtTs}}
+            </p>
+          </div>
+            <p *ngIf="event?.message" style="margin-top: 5px;">{{event?.message}}</p>
           </ion-label>
         </ion-item>
   </div>

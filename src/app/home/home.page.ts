@@ -37,6 +37,7 @@ export class HomePage implements OnInit {
 
     }
     ionViewWillEnter() {
+    this.userEvents = [];
     this.loading.present();
     this.loggedInUser=UserSession.getUserSession().userInfo.userId;
     this.loggedInUserInfo=UserSession.getUserSession().userInfo;

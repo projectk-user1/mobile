@@ -13,12 +13,21 @@
           
         </ion-button>
       </ion-buttons> -->
-      <ion-buttons slot="end">
+      <!-- <ion-buttons slot="end">
         <ion-tab-button (click)="navigateTofilter()">
             <ion-icon name="funnel" style="margin-right: 1em;"></ion-icon>
             <ion-label style="margin-right: 2em;">Filter</ion-label>
             <ion-badge color="danger" *ngIf="filterCnt>0">{{filterCnt}}</ion-badge>
         </ion-tab-button>
+    </ion-buttons> -->
+    <ion-buttons slot="end">
+      <ion-button (click)="navigateTofilter()">
+        <span>
+          <ion-icon  name="funnel"></ion-icon> 
+          <!-- <ion-text> Filter</ion-text> -->
+          <ion-badge color="danger" *ngIf="filterCnt>0" style="margin-bottom: 6px;font-size: x-small;">{{filterCnt}}</ion-badge>
+        </span>
+      </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
@@ -60,27 +69,27 @@
               {{user?.age}} yrs</span>,
             <span [style.font-style]="user?.prefMatchMap?.height ?'italic':'inherit'">
               {{user?.height?.cms}} cms
-            </span>,
+            </span>, 
             <span [style.font-style]="user?.prefMatchMap?.maritalStatus ?'italic':'inherit'">
               {{user?.maritalstatus}}
             </span>
           </p>
-          <p>
+          <p style="margin-top: 5px;">
               <span [style.font-style]="user?.prefMatchMap?.occupation ?'italic':'inherit'">
                   <fa-icon [icon]="['fas','briefcase']"></fa-icon>
                   {{user?.occupation}}
-              </span>
+              </span> 
               <span [style.font-style]="user?.prefMatchMap?.education ?'italic':'inherit'">
                   <ion-icon name="school"></ion-icon> {{user?.education}}
               </span>
           </p>
           
-            <p>
+            <p style="margin-top: 5px;">
               
               <ion-icon slot="start" name="pin"></ion-icon>
-              {{user?.distance?.kms}} kms
+              {{user?.distance?.kms}} kms 
               <ion-icon slot="start" name="planet"></ion-icon>
-              {{user?.gunaCount}}/36
+              {{user?.gunaCount}}/36 
 
               <!-- <fa-icon [icon]="['fas','wallet']"></fa-icon> -->
               {{formatCurrency(user?.salary)}}

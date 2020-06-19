@@ -18,7 +18,9 @@
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen class="ion-padding ">
-  <img [src]="profile.photoLink" fullscreen class="center"/>
+  <div height="100%" width="100%" class="s1isp7-0 dlDCkM center">
+    <img alt="image" [src]="profile.photoLink" loading="lazy"></div>
+  <!-- <img [src]="profile.photoLink" fullscreen class="center"/> -->
   <ion-grid class="basic-Details">
     <ion-row>
       <ion-col style="text-align: center; font-size: 18px;">
@@ -201,7 +203,7 @@
         </ion-item>
       </div>
     </div>
-    <div *ngSwitchDefault>
+    <div *ngSwitchDefault style="margin-top: 10px;">
       <!-- <h2> Personal Information </h2> -->
       <ion-list >
         <ion-item-group>
@@ -366,7 +368,7 @@
             Education </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
              {{profile?.education}}
-            <ion-icon name="bulb" slot="end" *ngIf=profile?.prefMatchMap?.education></ion-icon>
+            <ion-icon name="bulb" slot="end" *ngIf=profile?.prefMatchMap?.education style="margin-bottom: -3px;"></ion-icon>
           </ion-label>
         </ion-item>
         <ion-item>
@@ -375,7 +377,7 @@
             Occupation </ion-label>
           <ion-label slot="end" style="font-size: 14px;" class="ion-text-wrap">
             {{profile?.occupation}}
-            <ion-icon name="bulb" slot="end" color="medium" *ngIf=profile?.prefMatchMap?.occupation></ion-icon>
+            <ion-icon name="bulb" slot="end" color="medium" style="margin-bottom: -3px;" *ngIf=profile?.prefMatchMap?.occupation></ion-icon>
           </ion-label>
         </ion-item>
         <ion-item>

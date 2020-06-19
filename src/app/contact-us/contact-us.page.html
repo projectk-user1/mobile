@@ -9,19 +9,19 @@
     </ion-toolbar>
   </ion-header>
 <ion-content>
-  <ion-list lines="none">
+  <ion-list lines="none" style="margin-top: 20px;">
     <ion-item>
         <ion-avatar slot="start">
             <img [src]="clientInfo?.clntLogo" alt="" fullscreen class="center" />
-            <img src="https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ" alt="" fullscreen class="center" />
+            <!-- <img src="https://lh5.googleusercontent.com/S1aXj_jJdyy-lgFUoF_--qdC49DQanr9Fk4Anfn9ffTEb8B8SWQ8ZShmmyQ" alt="" fullscreen class="center" /> -->
         </ion-avatar>
         <ion-label>
             {{clientInfo?.clientName}}
         </ion-label>
       </ion-item>
-    <div style="margin-bottom:20px;"></div>
+    
   </ion-list>
-  <ion-list >
+  <ion-list lines="full">
   <ion-list-header>
       <ion-label>Contact Details</ion-label>
     </ion-list-header>

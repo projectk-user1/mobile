@@ -22,9 +22,8 @@ export class LoginPage implements OnInit {
               private menu: MenuController) { }
 
   ngOnInit() {
-    this.reset();
+   this.reset();
   }
-
   reset(){
     this.signInForm = this._formBuilder.group({
       loginId: ['', Validators.required],
@@ -33,6 +32,7 @@ export class LoginPage implements OnInit {
       useMock:['']
     });
   }
+  
   public login() {
     // alert('login');
     localStorage.removeItem('host');
@@ -47,8 +47,8 @@ export class LoginPage implements OnInit {
     if (this.signInForm.valid) {
       this.loading = true;
       // alert('Form Valid');
-      this._restService.httpPostCall(AppConstants.loginEndPoint, this.signInForm.value).subscribe(
-        (data: any) => {
+      this._restService.httpPostCall(AppConstants.loginEndPoint, this.signInForm.value).
+      subscribe((data: any) => {
           this.loading = false;
           if (data) {
             UserSession.createUserSession(data.data);

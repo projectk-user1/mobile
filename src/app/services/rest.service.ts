@@ -20,6 +20,10 @@ export class RestService {
     return new HttpHeaders()
       .set('Accept', 'application/json')
       .set('Content-Type', 'application/json')
+      .set('Access-Control-Allow-Origin', '*')
+      .set('Access-Control-Allow-Headers', '*')
+      .set('Access-Control-Allow-Methods', '*')
+      .set('Content-Type', 'application/json')
       .set('Authorization', 'Bearer' + localStorage.getItem('jwt'));
   }
 
